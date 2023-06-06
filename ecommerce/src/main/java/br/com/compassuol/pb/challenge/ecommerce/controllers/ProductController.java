@@ -45,6 +45,11 @@ public class ProductController {
         }
     }
 
+    @PutMapping("/v1/products/{id}")
+    public boolean putProductById(@PathVariable int id, @RequestBody ProductEntity productProps) {
+        return service.updateProductById(id, productProps);
+    }
+
     // delete 1 product
     @DeleteMapping("/v1/products/{id}")
     public ResponseEntity<Boolean> deleteProductById(@PathVariable int id) {

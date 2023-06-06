@@ -35,6 +35,22 @@ public class ProductService {
         return productRepository.findById(id);
     }
 
+    public boolean updateProductById(int id, ProductEntity productProps) {
+        Optional<ProductEntity> productOptional = productRepository.findById(id);
+
+        if (productOptional.isPresent()) {
+            ProductEntity product = productOptional.get();
+            product.setName(productProps.getName());
+            product.setPrice(productProps.getPrice());
+            product.setDescription(productProps.getDescription());
+
+            productRepository.save(product);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public boolean deleteById(int id) {
         Optional<ProductEntity> productOptional = productRepository.findById(id);
 
