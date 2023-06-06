@@ -6,12 +6,14 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
 @Entity(name = "Products")
 public class ProductEntity {
     @Id
@@ -33,10 +35,6 @@ public class ProductEntity {
     @NotEmpty(message = "'description' não pode ser nulo ou vazio")
     @Size(min = 3, message = "O campo 'description' deve ter no mínimo 3 caracteres")
     private String description;
-
-    public ProductEntity() {
-
-    }
 
     public ProductEntity(String name, Float price, String description) {
         this.name = name;
