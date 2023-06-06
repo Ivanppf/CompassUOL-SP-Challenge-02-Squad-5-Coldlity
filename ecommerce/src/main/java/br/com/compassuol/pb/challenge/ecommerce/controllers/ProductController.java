@@ -26,6 +26,12 @@ public class ProductController {
         return service.findAll();
     }
 
+    // create 1 product
+    @PostMapping("/v1/products")
+    public ProductEntity postProduct(@RequestBody ProductEntity productProps) {
+        return service.saveProduct(productProps);
+    }
+
     // return 1 product (search id)
     @GetMapping("/v1/products/{id}")
     public ResponseEntity<ProductEntity> getProductById(@PathVariable int id) {

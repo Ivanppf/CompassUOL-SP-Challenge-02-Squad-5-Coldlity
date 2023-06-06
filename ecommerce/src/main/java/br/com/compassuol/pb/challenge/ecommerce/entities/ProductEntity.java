@@ -2,14 +2,21 @@ package br.com.compassuol.pb.challenge.ecommerce.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
+@Getter
+@Setter
+@ToString
 @Entity(name = "Products")
 public class ProductEntity {
     @Id
     @Column(name = "productid")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer productId;
 
     @Column(nullable = false, length = 50)
@@ -18,7 +25,7 @@ public class ProductEntity {
     private String name;
 
     @Column(nullable = false)
-    @NotEmpty(message = "'price' não pode ser nulo ou vazio")
+    @NotNull(message = "'price' não pode ser nulo ou vazio")
     @Positive(message = "'price' deve ser um valor positivo")
     private Float price;
 
@@ -35,47 +42,5 @@ public class ProductEntity {
         this.name = name;
         this.price = price;
         this.description = description;
-    }
-
-    public int getId() {
-        return productId;
-    }
-
-    public void setId(int id) {
-        this.productId = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Float getPrice() {
-        return price;
-    }
-
-    public void setPrice(Float price) {
-        this.price = price;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    @Override
-    public String toString() {
-        return "ProductEntity{" +
-                "productid=" + productId +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", description='" + description + '\'' +
-                '}';
     }
 }

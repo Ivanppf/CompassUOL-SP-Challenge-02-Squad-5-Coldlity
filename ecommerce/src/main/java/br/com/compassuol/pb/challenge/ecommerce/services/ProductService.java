@@ -3,7 +3,6 @@ package br.com.compassuol.pb.challenge.ecommerce.services;
 import br.com.compassuol.pb.challenge.ecommerce.entities.ProductEntity;
 import br.com.compassuol.pb.challenge.ecommerce.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,6 +20,15 @@ public class ProductService {
 
     public List<ProductEntity> findAll() {
        return productRepository.findAll();
+    }
+
+    public ProductEntity saveProduct(ProductEntity productProps) {
+        String name = productProps.getName();
+        Float price = productProps.getPrice();
+        String description = productProps.getDescription();
+
+        ProductEntity savedProduct = productRepository.save(new ProductEntity(name, price, description));
+        return savedProduct;
     }
 
     public Optional<ProductEntity> findOne(int id) {
