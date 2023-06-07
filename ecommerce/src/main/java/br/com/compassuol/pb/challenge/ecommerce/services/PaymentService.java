@@ -5,6 +5,8 @@ import br.com.compassuol.pb.challenge.ecommerce.repositories.PaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+
 @Service
 public class PaymentService {
     private PaymentRepository paymentRepository;
@@ -24,6 +26,7 @@ public class PaymentService {
     }
 
     public Payment confirmPayment(Payment paymentProps) {
-        return new Payment(paymentProps.getPaymentMethod(), paymentProps.getPaymentDate());
+        Payment paymentConfirmed = paymentRepository.save(new Payment(paymentProps.getPaymentMethod(), paymentProps.getPaymentDate()));
+        return  paymentConfirmed;
     }
 }

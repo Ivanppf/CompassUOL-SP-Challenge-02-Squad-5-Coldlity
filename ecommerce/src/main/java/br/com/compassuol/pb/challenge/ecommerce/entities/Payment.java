@@ -2,6 +2,7 @@ package br.com.compassuol.pb.challenge.ecommerce.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -30,12 +31,11 @@ public class Payment {
     private Integer paymentId;
 
     @Column(nullable = false)
-    @NotEmpty(message = "'paymentMethod' não pode ser nulo ou vazio")
+    @NotNull(message = "'paymentMethod' não pode ser nulo ou vazio")
     @Enumerated(EnumType.STRING)
     private PaymentMethod paymentMethod;
 
     @Column(nullable = false)
-    @NotEmpty(message = "'paymentDate' não pode ser nulo ou vazio")
     private LocalDate paymentDate;
 
     /*
