@@ -1,2 +1,7 @@
-package br.com.compassuol.pb.challenge.ecommerce.enums;public enum StatusOption {
+package br.com.compassuol.pb.challenge.ecommerce.enums;
+
+public enum StatusOption {
+
+    CREATED, CONFIRMED
+
 }
