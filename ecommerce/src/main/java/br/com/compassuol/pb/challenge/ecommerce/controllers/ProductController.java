@@ -1,6 +1,7 @@
 package br.com.compassuol.pb.challenge.ecommerce.controllers;
 
-import br.com.compassuol.pb.challenge.ecommerce.entities.ProductEntity;
+
+import br.com.compassuol.pb.challenge.ecommerce.entities.Product;
 import br.com.compassuol.pb.challenge.ecommerce.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,23 +23,23 @@ public class ProductController {
 
     // return all products
     @GetMapping("/v1/products")
-    public List<ProductEntity> getProducts() {
+    public List<Product> getProducts() {
         return service.findAll();
     }
 
     // create 1 product
     @PostMapping("/v1/products")
-    public ProductEntity postProduct(@RequestBody ProductEntity productProps) {
+    public Product postProduct(@RequestBody Product productProps) {
         return service.saveProduct(productProps);
     }
 
     // return 1 product (search id)
     @GetMapping("/v1/products/{id}")
-    public ResponseEntity<ProductEntity> getProductById(@PathVariable int id) {
-        Optional<ProductEntity> productOptional = service.findOne(id);
+    public ResponseEntity<Product> getProductById(@PathVariable int id) {
+        Optional<Product> productOptional = service.findOne(id);
 
         if (productOptional.isPresent()) {
-            ProductEntity product = productOptional.get();
+            Product product = productOptional.get();
             return ResponseEntity.ok(product);
         } else {
             return ResponseEntity.notFound().build();
@@ -46,7 +47,7 @@ public class ProductController {
     }
 
     @PutMapping("/v1/products/{id}")
-    public boolean putProductById(@PathVariable int id, @RequestBody ProductEntity productProps) {
+    public boolean putProductById(@PathVariable int id, @RequestBody Product productProps) {
         return service.updateProductById(id, productProps);
     }
 

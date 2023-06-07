@@ -14,10 +14,11 @@ import lombok.ToString;
 @Setter
 @ToString
 @NoArgsConstructor
-@Entity(name = "Products")
-public class ProductEntity {
+@Entity
+@Table(name = "products")
+public class Product {
     @Id
-    @Column(name = "productid")
+    @Column(name = "productId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer productId;
 
@@ -36,7 +37,7 @@ public class ProductEntity {
     @Size(min = 3, message = "O campo 'description' deve ter no mínimo 3 caracteres")
     private String description;
 
-    public ProductEntity(String name, Float price, String description) {
+    public Product(String name, Float price, String description) {
         this.name = name;
         this.price = price;
         this.description = description;

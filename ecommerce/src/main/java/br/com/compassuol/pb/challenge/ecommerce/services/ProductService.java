@@ -1,6 +1,6 @@
 package br.com.compassuol.pb.challenge.ecommerce.services;
 
-import br.com.compassuol.pb.challenge.ecommerce.entities.ProductEntity;
+import br.com.compassuol.pb.challenge.ecommerce.entities.Product;
 import br.com.compassuol.pb.challenge.ecommerce.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,28 +18,28 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public List<ProductEntity> findAll() {
+    public List<Product> findAll() {
        return productRepository.findAll();
     }
 
-    public ProductEntity saveProduct(ProductEntity productProps) {
+    public Product saveProduct(Product productProps) {
         String name = productProps.getName();
         Float price = productProps.getPrice();
         String description = productProps.getDescription();
 
-        ProductEntity savedProduct = productRepository.save(new ProductEntity(name, price, description));
+        Product savedProduct = productRepository.save(new Product(name, price, description));
         return savedProduct;
     }
 
-    public Optional<ProductEntity> findOne(int id) {
+    public Optional<Product> findOne(int id) {
         return productRepository.findById(id);
     }
 
-    public boolean updateProductById(int id, ProductEntity productProps) {
-        Optional<ProductEntity> productOptional = productRepository.findById(id);
+    public boolean updateProductById(int id, Product productProps) {
+        Optional<Product> productOptional = productRepository.findById(id);
 
         if (productOptional.isPresent()) {
-            ProductEntity product = productOptional.get();
+            Product product = productOptional.get();
             product.setName(productProps.getName());
             product.setPrice(productProps.getPrice());
             product.setDescription(productProps.getDescription());
@@ -52,7 +52,7 @@ public class ProductService {
     }
 
     public boolean deleteById(int id) {
-        Optional<ProductEntity> productOptional = productRepository.findById(id);
+        Optional<Product> productOptional = productRepository.findById(id);
 
         if (productOptional.isPresent()) {
             productRepository.deleteById(id);
