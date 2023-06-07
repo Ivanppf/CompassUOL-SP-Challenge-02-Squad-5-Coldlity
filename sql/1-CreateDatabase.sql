@@ -1,2 +1,0 @@
--- ETAPA 1: CREATE DATABASE
-CREATE DATABASE challenge02_ecommerce;
