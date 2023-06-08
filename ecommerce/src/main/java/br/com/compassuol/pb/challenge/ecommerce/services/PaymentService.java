@@ -26,7 +26,9 @@ public class PaymentService {
     }
 
     public Payment confirmPayment(Payment paymentProps) {
-        Payment paymentConfirmed = paymentRepository.save(new Payment(paymentProps.getPaymentMethod(), paymentProps.getPaymentDate()));
-        return  paymentConfirmed;
+        Payment.PaymentMethod paymentMethod = paymentProps.getPaymentMethod();
+        LocalDate paymentDate = paymentProps.getPaymentDate();
+
+        return paymentRepository.save(new Payment(paymentMethod, paymentDate));
     }
 }

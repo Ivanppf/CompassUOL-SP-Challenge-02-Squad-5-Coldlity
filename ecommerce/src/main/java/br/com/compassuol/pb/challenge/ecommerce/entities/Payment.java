@@ -1,23 +1,14 @@
 package br.com.compassuol.pb.challenge.ecommerce.entities;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 import java.time.LocalDate;
 
-@Getter
-@Setter
-@ToString
-@NoArgsConstructor
 @Entity
 @Table(name = "Payment")
 public class Payment {
-    private enum PaymentMethod {
+    public enum PaymentMethod {
         CREDIT_CARD,
         DEBIT_CARD,
         TRANSFER,
@@ -44,8 +35,40 @@ public class Payment {
     private Order orderId;
     */
 
-    public Payment(PaymentMethod paymentMethod, LocalDate paymentDate) {
+    public Payment() {
+    }
+
+    public Payment(@NotNull PaymentMethod paymentMethod, LocalDate paymentDate) {
         this.paymentMethod = paymentMethod;
         this.paymentDate = paymentDate;
+    }
+
+    public Integer getPaymentId() {
+        return paymentId;
+    }
+
+    public @NotNull PaymentMethod getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(@NotNull PaymentMethod paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public LocalDate getPaymentDate() {
+        return paymentDate;
+    }
+
+    public void setPaymentDate(LocalDate paymentDate) {
+        this.paymentDate = paymentDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Payment{" +
+                "paymentId=" + paymentId +
+                ", paymentMethod=" + paymentMethod +
+                ", paymentDate=" + paymentDate +
+                '}';
     }
 }
