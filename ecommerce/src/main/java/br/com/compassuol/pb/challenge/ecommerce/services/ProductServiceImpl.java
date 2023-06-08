@@ -1,6 +1,7 @@
 package br.com.compassuol.pb.challenge.ecommerce.services;
 
 import br.com.compassuol.pb.challenge.ecommerce.entities.Product;
+import br.com.compassuol.pb.challenge.ecommerce.exceptions.ProductExceptions;
 import br.com.compassuol.pb.challenge.ecommerce.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,15 +29,33 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product saveProduct(Product productProps) {
         String name = productProps.getName();
-        Float price = productProps.getPrice();
+        float price = productProps.getPrice();
         String description = productProps.getDescription();
 
-        return productRepository.save(new Product(name, price, description));
+        String nameSanitized = name.trim();
+        String descriptionSanitized = description.trim();
+
+        if (nameSanitized == null || nameSanitized == "" || nameSanitized.length() < 3) {
+            throw new ProductExceptions.ProductNameException("O ATRIBUTO NAME ESTÁ COM ALGUM PROBLEMA - ELE NÃO PODE SER NULO OU VAZIO E DEVE TER NO MINIMO 3 CARACTERES");
+        } else if (descriptionSanitized == null || descriptionSanitized == "" || descriptionSanitized.length() < 3) {
+            throw new ProductExceptions.ProductDescriptionException("O ATRIBUTO DESCRIPTION ESTÁ COM ALGUM PROBLEMA - ELE NÃO PODE SER NULO OU VAZIO E DEVE TER NO MINIMO 3 CARACTERES");
+        } else if (price < 0) {
+            throw new ProductExceptions.ProductPriceException("O ATRIBUTO PRICE ESTÁ COM ALGUM PROBLEMA - ELE NÃO PODE SER NULO OU MENOR QUE 0");
+        }
+
+        return productRepository.save(new Product(nameSanitized, price, descriptionSanitized));
     }
 
     @Override
-    public Optional<Product> findOneProduct(int id) {
-        return productRepository.findById(id);
+    public ResponseEntity<Product> findOneProduct(int id) {
+        Optional<Product> productOptional = productRepository.findById(id);
+
+        if (productOptional.isPresent()) {
+            Product product = productOptional.get();
+            return ResponseEntity.ok(product);
+        } else {
+            throw new ProductExceptions.ProductNotFoundException("PRODUCT " + id + " NÃO ENCONTRADO");
+        }
     }
 
     @Override
@@ -45,6 +64,22 @@ public class ProductServiceImpl implements ProductService {
 
         if (productOptional.isPresent()) {
             Product product = productOptional.get();
+
+            String name = productProps.getName();
+            String description = productProps.getDescription();
+            float price = productProps.getPrice();
+
+            String nameSanitized = name.trim();
+            String descriptionSanitized = description.trim();
+
+            if (nameSanitized == null || nameSanitized == "" || nameSanitized.length() < 3) {
+                throw new ProductExceptions.ProductNameException("O ATRIBUTO NAME ESTÁ COM ALGUM PROBLEMA - ELE NÃO PODE SER NULO OU VAZIO E DEVE TER NO MINIMO 3 CARACTERES");
+            } else if (descriptionSanitized == null || descriptionSanitized == "" || descriptionSanitized.length() < 3) {
+                throw new ProductExceptions.ProductDescriptionException("O ATRIBUTO DESCRIPTION ESTÁ COM ALGUM PROBLEMA - ELE NÃO PODE SER NULO OU VAZIO E DEVE TER NO MINIMO 3 CARACTERES");
+            } else if (price < 0) {
+                throw new ProductExceptions.ProductPriceException("O ATRIBUTO PRICE ESTÁ COM ALGUM PROBLEMA - ELE NÃO PODE SER NULO OU MENOR QUE 0");
+            }
+
             product.setName(productProps.getName());
             product.setPrice(productProps.getPrice());
             product.setDescription(productProps.getDescription());
@@ -53,7 +88,7 @@ public class ProductServiceImpl implements ProductService {
 
             return ResponseEntity.status(HttpStatus.OK).body("PRODUTO " + id + " ATUALIZADO COM SUCESSO");
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("PRODUTO " + id + " NÃO ENCONTRADO");
+            throw new ProductExceptions.ProductNotFoundException("PRODUCT " + id + " NÃO ENCONTRADO");
         }
     }
 
@@ -66,7 +101,7 @@ public class ProductServiceImpl implements ProductService {
 
             return ResponseEntity.status(HttpStatus.OK).body("PRODUTO " + id + " EXCLUIDO COM SUCESSO");
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("PRODUTO " + id + " NÃO ENCONTRADO");
+            throw new ProductExceptions.ProductNotFoundException("PRODUCT " + id + " NÃO ENCONTRADO");
         }
     }
 }

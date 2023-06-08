@@ -22,7 +22,7 @@ public class Product {
     @Column(nullable = false)
     @NotNull(message = "'price' não pode ser nulo ou vazio")
     @Positive(message = "'price' deve ser um valor positivo")
-    private Float price;
+    private float price;
 
     @Column(nullable = false, length = 100)
     @NotEmpty(message = "'description' não pode ser nulo ou vazio")
