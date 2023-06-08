@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/v1")
 public class ProductController {
     // service
     private ProductService service;
@@ -22,21 +23,21 @@ public class ProductController {
     }
 
     // return all products
-    @GetMapping("/v1/products")
+    @GetMapping("/products")
     public List<Product> getProducts() {
-        return service.findAll();
+        return service.findAllProducts();
     }
 
     // create 1 product
-    @PostMapping("/v1/products")
+    @PostMapping("/products")
     public Product postProduct(@RequestBody Product productProps) {
         return service.saveProduct(productProps);
     }
 
     // return 1 product (search id)
-    @GetMapping("/v1/products/{id}")
+    @GetMapping("/products/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable int id) {
-        Optional<Product> productOptional = service.findOne(id);
+        Optional<Product> productOptional = service.findOneProduct(id);
 
         if (productOptional.isPresent()) {
             Product product = productOptional.get();
@@ -46,20 +47,14 @@ public class ProductController {
         }
     }
 
-    @PutMapping("/v1/products/{id}")
-    public boolean putProductById(@PathVariable int id, @RequestBody Product productProps) {
+    @PutMapping("/products/{id}")
+    public ResponseEntity<String> putProductById(@PathVariable int id, @RequestBody Product productProps) {
         return service.updateProductById(id, productProps);
     }
 
     // delete 1 product
-    @DeleteMapping("/v1/products/{id}")
-    public ResponseEntity<Boolean> deleteProductById(@PathVariable int id) {
-        boolean productDeleted = service.deleteById(id);
-
-        if (productDeleted == true) {
-            return ResponseEntity.ok(productDeleted);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    @DeleteMapping("/products/{id}")
+    public ResponseEntity<Object> deleteProductById(@PathVariable int id) {
+        return service.deleteProductById(id);
     }
 }
