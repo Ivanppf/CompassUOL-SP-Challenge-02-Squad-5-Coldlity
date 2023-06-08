@@ -1,6 +1,6 @@
 package br.com.compassuol.pb.challenge.ecommerce.entities;
 
-import br.com.compassuol.pb.challenge.ecommerce.enums.StatusOption;
+import br.com.compassuol.pb.challenge.ecommerce.enums.StatusOptions;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -20,17 +20,18 @@ public class Order {
     @Positive(message = "'customerId' deve ser um número positivo")
     private int customerId;
 
-    @Column(name = "date")
+    @Column(name = "date", nullable = false)
     private LocalDate date;
 
     @Column(name = "status", nullable = false)
-    private StatusOption status;
+    @Enumerated(EnumType.STRING)
+    private StatusOptions status;
 
     public Order() {
 
     }
 
-    public Order(int customerId, LocalDate date, StatusOption status) {
+    public Order(int customerId, LocalDate date, StatusOptions status) {
         this.customerId = customerId;
         this.date = date;
         this.status = status;
@@ -44,23 +45,15 @@ public class Order {
         return customerId;
     }
 
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
-    }
-
-    public LocalDate getOrderDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setOrderDate(LocalDate date) {
-        this.date = date;
-    }
-
-    public StatusOption getStatus() {
+    public StatusOptions getStatus() {
         return status;
     }
 
-    public void setStatus(StatusOption status) {
+    public void setStatus(StatusOptions status) {
         this.status = status;
     }
 
@@ -69,7 +62,7 @@ public class Order {
         return "Order{" +
                 "orderId=" + orderId +
                 ", customerId=" + customerId +
-                ", orderDate=" + date +
+                ", date=" + date +
                 ", status=" + status +
                 '}';
     }

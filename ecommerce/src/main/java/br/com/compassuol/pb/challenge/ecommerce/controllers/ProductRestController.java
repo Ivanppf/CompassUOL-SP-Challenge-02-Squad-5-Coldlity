@@ -11,13 +11,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/v1")
-public class ProductController {
+public class ProductRestController {
     // service
     private ProductServiceImpl service;
 
     // constructor - inject service dependency
     @Autowired
-    public ProductController(ProductServiceImpl service) {
+    public ProductRestController(ProductServiceImpl service) {
         this.service = service;
     }
 

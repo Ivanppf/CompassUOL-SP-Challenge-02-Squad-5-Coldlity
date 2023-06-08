@@ -10,13 +10,13 @@ import br.com.compassuol.pb.challenge.ecommerce.services.CustomerServiceImpl;
 
 @RestController
 @RequestMapping("/v1")
-public class CustomerController {
+public class CustomerRestController {
     // service
     private CustomerServiceImpl customerServiceImpl;
 
     // constructor - inject service dependency
     @Autowired
-    public CustomerController(CustomerServiceImpl customerServiceImpl) {
+    public CustomerRestController(CustomerServiceImpl customerServiceImpl) {
         this.customerServiceImpl = customerServiceImpl;
     }
 

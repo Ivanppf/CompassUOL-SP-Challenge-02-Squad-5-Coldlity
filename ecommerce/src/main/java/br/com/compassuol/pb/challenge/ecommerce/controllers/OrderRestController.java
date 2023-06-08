@@ -10,9 +10,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/v1")
 public class OrderRestController {
-
+    // Service
     private OrderServiceImpl orderService;
 
+    // constructor - inject service dependency
     @Autowired
     public OrderRestController(OrderServiceImpl orderService) {
         this.orderService = orderService;
@@ -21,25 +22,25 @@ public class OrderRestController {
     //get all orders
     @GetMapping("/orders")
     public List<Order> findAll() {
-        return orderService.findAll();
+        return orderService.findAllOrders();
     }
 
-    //get specific order
-    @GetMapping("/orders/{orderId}")
-    public Order getOrder(@PathVariable int orderId) {
-        Order order = orderService.findById(orderId);
+    // getting specific orders from a customer
+    @GetMapping("/orders/customers/{customerId}")
+    public Order getOrder(@PathVariable int customerId) {
+        Order orders = orderService.findOrdersById(customerId);
 
-        if (order == null)
+        if (orders == null)
 
-            throw new RuntimeException("Order id not found - " + orderId);
+            throw new RuntimeException("Customer id not found - " + customerId);
 
-        return order;
+        return orders;
     }
 
     // add post method
     @PostMapping("/orders")
-    public Order addOrder(@RequestBody Order order) {
-        Order anOrder = orderService.save(order);
+    public Order addOrder(@RequestBody Order orderProps) {
+        Order anOrder = orderService.saveOrder(orderProps);
         return anOrder;
     }
 }

@@ -5,12 +5,9 @@ import br.com.compassuol.pb.challenge.ecommerce.entities.Order;
 import java.util.List;
 public interface OrderService {
 
-    public List<Order> findAll();
+    public List<Order> findAllOrders();
 
-    public Order findById(int id);
+    public Order findOrdersById(int id);
 
-    public Order save(Order order);
-
-    public void deleteById(int id);
-
+    public Order saveOrder(Order order);
 }
