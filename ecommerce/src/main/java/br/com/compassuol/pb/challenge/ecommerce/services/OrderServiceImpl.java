@@ -6,7 +6,6 @@ import br.com.compassuol.pb.challenge.ecommerce.exceptions.CustomerExceptions;
 import br.com.compassuol.pb.challenge.ecommerce.repositories.CustomerRepository;
 import br.com.compassuol.pb.challenge.ecommerce.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,12 +31,16 @@ public class OrderServiceImpl implements OrderService {
     }
 
     // returning orders from a specific customer
+    // NÃO RETORNA TODOS AS ORDERS
     @Override
-    public Order findOrdersById(int customerId) {
-        Optional<Order> result = orderRepository.findById(customerId);
-        if (result.isPresent())
-            return result.get();
-        throw new RuntimeException("Id não encontrado");
+    public Optional<Order> findOrdersById(int customerId) {
+        Optional<Customer> customerOptional = customerRepository.findById(customerId);
+
+        if (customerOptional.isPresent()) {
+            return orderRepository.findById(customerId);
+        } else {
+            throw new CustomerExceptions.CustomerNotFoundException("CUSTOMER ID (" + customerId + ") NÃO ENCONTRADO");
+        }
     }
 
     // save 1 order

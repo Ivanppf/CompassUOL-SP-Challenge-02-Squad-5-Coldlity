@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/v1")
@@ -27,14 +28,8 @@ public class OrderRestController {
 
     // getting specific orders from a customer
     @GetMapping("/orders/customers/{customerId}")
-    public Order getOrder(@PathVariable int customerId) {
-        Order orders = orderService.findOrdersById(customerId);
-
-        if (orders == null)
-
-            throw new RuntimeException("Customer id not found - " + customerId);
-
-        return orders;
+    public Optional<Order> getOrders(@PathVariable int customerId) {
+        return orderService.findOrdersById(customerId);
     }
 
     // add post method
