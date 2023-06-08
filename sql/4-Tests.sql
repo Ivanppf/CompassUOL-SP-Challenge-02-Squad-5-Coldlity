@@ -72,4 +72,3 @@ VALUES ('CREDIT_CARD', NULL, 1);
 -- ETAPA 4.4.4: orderId inválido
 INSERT INTO Payments (paymentMethod, paymentDate, orderId)
 VALUES ('CREDIT_CARD', '2023-06-01', 9999);
-

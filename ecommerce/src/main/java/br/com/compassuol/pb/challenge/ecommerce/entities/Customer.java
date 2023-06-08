@@ -1,38 +1,49 @@
 package br.com.compassuol.pb.challenge.ecommerce.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "customer")
 public class Customer {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int customerId;
 
-    @Column(name ="name")
+    @Id
+    @Column(name = "customerId")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer customerId;
+
+    @Size(min = 3, message = "'name' deve ter no mínimo 3 caracteres")
+    @Column(name = "name")
     private String name;
 
-    @Column(name ="cpf")
-    private String CPF;
+    @NotEmpty(message = "não pode ser nulo ou vazio")
+    @Column(name = "cpf")
+    private String cpf;
 
-    @Column(name ="email")
+    @NotEmpty(message = "não pode ser nulo ou vazio")
+    @Column(name = "email")
     private String email;
 
-    @Column(name ="active")
+    @Column(name = "active")
     private boolean active;
 
-    public Customer() {
+    public Customer(){
+
     }
 
-    public Customer(String name, String CPF, String email, boolean active) {
+    public Customer(String name, String cpf, String email, boolean active) {
         this.name = name;
-        this.CPF = CPF;
+        this.cpf = cpf;
         this.email = email;
         this.active = active;
     }
 
-    public int getCustomerId() {
+    public Integer getCustomerId() {
         return customerId;
+    }
+
+    public void setCustomerId(Integer customerId) {
+        this.customerId = customerId;
     }
 
     public String getName() {
@@ -43,12 +54,12 @@ public class Customer {
         this.name = name;
     }
 
-    public String getCPF() {
-        return CPF;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setCPF(String CPF) {
-        this.CPF = CPF;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public String getEmail() {
@@ -72,7 +83,7 @@ public class Customer {
         return "Customer{" +
                 "customerId=" + customerId +
                 ", name='" + name + '\'' +
-                ", CPF='" + CPF + '\'' +
+                ", cpf='" + cpf + '\'' +
                 ", email='" + email + '\'' +
                 ", active=" + active +
                 '}';

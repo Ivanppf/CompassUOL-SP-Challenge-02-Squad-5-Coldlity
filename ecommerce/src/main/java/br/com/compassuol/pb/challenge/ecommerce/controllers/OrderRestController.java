@@ -1,7 +1,7 @@
 package br.com.compassuol.pb.challenge.ecommerce.controllers;
 
 import br.com.compassuol.pb.challenge.ecommerce.entities.Order;
-import br.com.compassuol.pb.challenge.ecommerce.service.OrderService;
+import br.com.compassuol.pb.challenge.ecommerce.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
