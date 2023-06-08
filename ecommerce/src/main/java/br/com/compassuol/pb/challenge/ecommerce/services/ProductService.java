@@ -12,7 +12,7 @@ public interface ProductService {
 
     public ResponseEntity<Product> findOneProduct(int id);
 
-    public ResponseEntity<String> updateProductById(int id, Product productProps);
+    public Product updateProductById(int id, Product productProps);
 
     public ResponseEntity<Object> deleteProductById(int id);
 }

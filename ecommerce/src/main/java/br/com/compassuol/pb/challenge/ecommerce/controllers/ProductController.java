@@ -40,7 +40,7 @@ public class ProductController {
     }
 
     @PutMapping("/products/{id}")
-    public ResponseEntity<String> putProductById(@PathVariable int id, @RequestBody Product productProps) {
+    public Product putProductById(@PathVariable int id, @RequestBody Product productProps) {
         return service.updateProductById(id, productProps);
     }
 

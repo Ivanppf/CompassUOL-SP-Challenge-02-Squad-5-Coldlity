@@ -59,7 +59,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ResponseEntity<String> updateProductById(int id, Product productProps) {
+    public Product updateProductById(int id, Product productProps) {
         Optional<Product> productOptional = productRepository.findById(id);
 
         if (productOptional.isPresent()) {
@@ -84,9 +84,7 @@ public class ProductServiceImpl implements ProductService {
             product.setPrice(productProps.getPrice());
             product.setDescription(productProps.getDescription());
 
-            productRepository.save(product);
-
-            return ResponseEntity.status(HttpStatus.OK).body("PRODUTO ID (" + id + ") ATUALIZADO COM SUCESSO");
+            return productRepository.save(product);
         } else {
             throw new ProductExceptions.ProductNotFoundException("PRODUCT ID (" + id + ") NÃO ENCONTRADO");
         }
