@@ -15,7 +15,7 @@ public class ProductController {
     // service
     private ProductServiceImpl service;
 
-    // inject service dependency
+    // constructor - inject service dependency
     @Autowired
     public ProductController(ProductServiceImpl service) {
         this.service = service;
@@ -29,24 +29,25 @@ public class ProductController {
 
     // create 1 product
     @PostMapping("/products")
-    public Product postProduct(@RequestBody Product productProps) {
+    public Product addProduct(@RequestBody Product productProps) {
         return service.saveProduct(productProps);
     }
 
     // return 1 product (search id)
     @GetMapping("/products/{id}")
-    public ResponseEntity<Product> getProductById(@PathVariable int id) {
-        return service.findOneProduct(id);
+    public ResponseEntity<Product> getProductById(@PathVariable int productId) {
+        return service.findProductById(productId);
     }
 
+    // update 1 product (search id)
     @PutMapping("/products/{id}")
-    public Product putProductById(@PathVariable int id, @RequestBody Product productProps) {
-        return service.updateProductById(id, productProps);
+    public Product updateProductById(@PathVariable int productId, @RequestBody Product productProps) {
+        return service.updateProductById(productId, productProps);
     }
 
     // delete 1 product
     @DeleteMapping("/products/{id}")
-    public ResponseEntity<Object> deleteProductById(@PathVariable int id) {
-        return service.deleteProductById(id);
+    public ResponseEntity<Object> deleteProductById(@PathVariable int productId) {
+        return service.deleteProductById(productId);
     }
 }

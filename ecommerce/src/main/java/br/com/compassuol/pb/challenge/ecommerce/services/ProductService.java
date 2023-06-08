@@ -10,9 +10,9 @@ public interface ProductService {
 
     public Product saveProduct(Product productProps);
 
-    public ResponseEntity<Product> findOneProduct(int id);
+    public ResponseEntity<Product> findProductById(int productId);
 
-    public Product updateProductById(int id, Product productProps);
+    public Product updateProductById(int productId, Product productProps);
 
-    public ResponseEntity<Object> deleteProductById(int id);
+    public ResponseEntity<Object> deleteProductById(int productId);
 }

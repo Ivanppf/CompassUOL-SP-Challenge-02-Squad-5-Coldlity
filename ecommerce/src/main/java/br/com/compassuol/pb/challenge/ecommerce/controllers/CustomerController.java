@@ -1,42 +1,40 @@
 package br.com.compassuol.pb.challenge.ecommerce.controllers;
 
-import java.util.Optional;
-
 import br.com.compassuol.pb.challenge.ecommerce.entities.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import br.com.compassuol.pb.challenge.ecommerce.services.CustomerServiceImpl;
 
 @RestController
+@RequestMapping("/v1")
 public class CustomerController {
+    // service
     private CustomerServiceImpl customerServiceImpl;
 
+    // constructor - inject service dependency
     @Autowired
     public CustomerController(CustomerServiceImpl customerServiceImpl) {
         this.customerServiceImpl = customerServiceImpl;
     }
 
-    //Endpoint to GET the product by id
-    @GetMapping("/v1/customers/{customerId}")
+    // return 1 product (search id)
+    @GetMapping("/customers/{customerId}")
     public ResponseEntity<Customer> getCustomer(@PathVariable int customerId){
-        return customerServiceImpl.findById(customerId);
+        return customerServiceImpl.findCustomerById(customerId);
     }
 
-    @PostMapping("/v1/customers")
-    public Customer addCustomer(@RequestBody Customer customer){
-        return customerServiceImpl.saveCustomer(customer);
+    // create 1 customer
+    @PostMapping("/customers")
+    public Customer addCustomer(@RequestBody Customer customerProps){
+        return customerServiceImpl.saveCustomer(customerProps);
     }
 
-    @PutMapping("/v1/customers/{customerId}")
-    public Customer updateCustomer(@PathVariable int customerId, @RequestBody Customer customer){
-        return customerServiceImpl.updateCustomer(customerId, customer);
+    // update 1 product (search id)
+    @PutMapping("/customers/{customerId}")
+    public Customer updateCustomer(@PathVariable int customerId, @RequestBody Customer customerProps){
+        return customerServiceImpl.updateCustomer(customerId, customerProps);
     }
 }

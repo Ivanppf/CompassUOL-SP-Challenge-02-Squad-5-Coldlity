@@ -19,14 +19,14 @@ public class CustomerServiceImpl implements CustomerService {
         this.customerRepository = customerRepository;
     }
 
-    public ResponseEntity<Customer> findById(int id) {
-        Optional<Customer> customerOptional = customerRepository.findById(id);
+    public ResponseEntity<Customer> findCustomerById(int customerId) {
+        Optional<Customer> customerOptional = customerRepository.findById(customerId);
 
         if (customerOptional.isPresent()) {
             Customer customer = customerOptional.get();
             return ResponseEntity.ok(customer);
         } else {
-            throw new CustomerExceptions.CustomerNotFoundException("CUSTOMER ID (" + id + ") NÃO ENCONTRADO");
+            throw new CustomerExceptions.CustomerNotFoundException("CUSTOMER ID (" + customerId + ") NÃO ENCONTRADO");
         }
     }
 
@@ -51,15 +51,15 @@ public class CustomerServiceImpl implements CustomerService {
         return customerRepository.save(new Customer(name, cpf, email, active));
     }
 
-    public Customer updateCustomer(int id, Customer customer){
-        Optional<Customer> customerOptional = customerRepository.findById(id);
+    public Customer updateCustomer(int customerId, Customer customerProps){
+        Optional<Customer> customerOptional = customerRepository.findById(customerId);
 
         if(customerOptional.isPresent()){
             Customer customers = customerOptional.get();
 
-            String name = customer.getName();
-            String cpf = customer.getCpf();
-            String email = customer.getEmail();
+            String name = customerProps.getName();
+            String cpf = customerProps.getCpf();
+            String email = customerProps.getEmail();
 
             String nameSanitized = name.trim();
             String cpfSanitized = cpf.trim();
@@ -73,14 +73,14 @@ public class CustomerServiceImpl implements CustomerService {
                 throw new CustomerExceptions.CustomerEmailException("O ATRIBUTO EMAIL ESTÁ COM ALGUM PROBLEMA - ELE NÃO PODE SER NULO OU VAZIO");
             }
 
-            customers.setName(customer.getName());
-            customers.setCpf(customer.getCpf());
-            customers.setEmail(customer.getEmail());
-            customers.setActive(customer.isActive());
+            customers.setName(customerProps.getName());
+            customers.setCpf(customerProps.getCpf());
+            customers.setEmail(customerProps.getEmail());
+            customers.setActive(customerProps.isActive());
 
             return  customerRepository.save(customers);
         }else{
-            throw new CustomerExceptions.CustomerNotFoundException("CUSTOMER ID (" + id + ") NÃO ENCONTRADO");
+            throw new CustomerExceptions.CustomerNotFoundException("CUSTOMER ID (" + customerId + ") NÃO ENCONTRADO");
         }
     }
 

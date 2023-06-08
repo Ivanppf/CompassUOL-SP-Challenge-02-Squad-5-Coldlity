@@ -4,9 +4,9 @@ import br.com.compassuol.pb.challenge.ecommerce.entities.Customer;
 import org.springframework.http.ResponseEntity;
 
 public interface CustomerService {
-    public ResponseEntity<Customer> findById(int id);
+    public ResponseEntity<Customer> findCustomerById(int customerId);
 
-    public Customer saveCustomer(Customer customer);
+    public Customer saveCustomer(Customer customerProps);
 
-    public Customer updateCustomer(int id, Customer customer);
+    public Customer updateCustomer(int customerId, Customer customerProps);
 }
