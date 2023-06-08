@@ -35,8 +35,15 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Optional<Product> findOneProduct(int id) {
-        return productRepository.findById(id);
+    public ResponseEntity<Product> findOneProduct(int id) {
+        Optional<Product> productOptional = productRepository.findById(id);
+
+        if (productOptional.isPresent()) {
+            Product product = productOptional.get();
+            return ResponseEntity.ok(product);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @Override

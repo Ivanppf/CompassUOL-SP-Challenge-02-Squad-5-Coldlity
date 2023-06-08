@@ -37,14 +37,7 @@ public class ProductController {
     // return 1 product (search id)
     @GetMapping("/products/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable int id) {
-        Optional<Product> productOptional = service.findOneProduct(id);
-
-        if (productOptional.isPresent()) {
-            Product product = productOptional.get();
-            return ResponseEntity.ok(product);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        return service.findOneProduct(id);
     }
 
     @PutMapping("/products/{id}")
