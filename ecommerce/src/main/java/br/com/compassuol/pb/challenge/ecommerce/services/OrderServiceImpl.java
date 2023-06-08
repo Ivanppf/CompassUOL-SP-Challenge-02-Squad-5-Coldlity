@@ -2,6 +2,7 @@ package br.com.compassuol.pb.challenge.ecommerce.services;
 
 import br.com.compassuol.pb.challenge.ecommerce.entities.Customer;
 import br.com.compassuol.pb.challenge.ecommerce.entities.Order;
+import br.com.compassuol.pb.challenge.ecommerce.enums.StatusOptions;
 import br.com.compassuol.pb.challenge.ecommerce.exceptions.CustomerExceptions;
 import br.com.compassuol.pb.challenge.ecommerce.repositories.CustomerRepository;
 import br.com.compassuol.pb.challenge.ecommerce.repositories.OrderRepository;
