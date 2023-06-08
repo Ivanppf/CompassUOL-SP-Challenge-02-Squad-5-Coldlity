@@ -2,23 +2,22 @@ package br.com.compassuol.pb.challenge.ecommerce.controllers;
 
 
 import br.com.compassuol.pb.challenge.ecommerce.entities.Product;
-import br.com.compassuol.pb.challenge.ecommerce.services.ProductService;
+import br.com.compassuol.pb.challenge.ecommerce.services.ProductServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/v1")
 public class ProductController {
     // service
-    private ProductService service;
+    private ProductServiceImpl service;
 
     // inject service dependency
     @Autowired
-    public ProductController(ProductService service) {
+    public ProductController(ProductServiceImpl service) {
         this.service = service;
     }
 

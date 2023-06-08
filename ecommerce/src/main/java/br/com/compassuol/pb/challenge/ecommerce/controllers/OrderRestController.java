@@ -1,7 +1,7 @@
 package br.com.compassuol.pb.challenge.ecommerce.controllers;
 
 import br.com.compassuol.pb.challenge.ecommerce.entities.Order;
-import br.com.compassuol.pb.challenge.ecommerce.services.OrderService;
+import br.com.compassuol.pb.challenge.ecommerce.services.OrderServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,10 +11,10 @@ import java.util.List;
 @RequestMapping("/v1")
 public class OrderRestController {
 
-    private OrderService orderService;
+    private OrderServiceImpl orderService;
 
     @Autowired
-    public OrderRestController(OrderService orderService) {
+    public OrderRestController(OrderServiceImpl orderService) {
         this.orderService = orderService;
     }
 

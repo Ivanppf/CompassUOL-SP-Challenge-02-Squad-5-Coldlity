@@ -14,42 +14,30 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.compassuol.pb.challenge.ecommerce.exceptions.CustomerNotFoundException;
-import br.com.compassuol.pb.challenge.ecommerce.services.CustomerService;
+import br.com.compassuol.pb.challenge.ecommerce.services.CustomerServiceImpl;
 
 @RestController
 public class CustomerController {
-    private CustomerService customerService;
+    private CustomerServiceImpl customerServiceImpl;
 
     @Autowired
-    public CustomerController(CustomerService customerService) {
-        this.customerService = customerService;
+    public CustomerController(CustomerServiceImpl customerServiceImpl) {
+        this.customerServiceImpl = customerServiceImpl;
     }
 
     //Endpoint to GET the product by id
     @GetMapping("/v1/customers/{customerId}")
     public ResponseEntity<Customer> getCustomer(@PathVariable int customerId){
-        
-        Optional<Customer> customerOptional = customerService.findById(customerId);
-
-        if (customerOptional.isPresent()) {
-            Customer product = customerOptional.get();
-            return ResponseEntity.ok(product);
-        } else {
-            throw new CustomerNotFoundException("Id Not Found:" + customerId);
-        }
+        return customerServiceImpl.findById(customerId);
     }
 
-    
     @PostMapping("/v1/customers")
     public Customer addCustomer(@RequestBody Customer customer){
-        return customerService.saveCustomer(customer);
+        return customerServiceImpl.saveCustomer(customer);
     }
 
-
-    
     @PutMapping("/v1/customers/{customerId}")
     public Customer updateCustomer(@PathVariable int customerId, @RequestBody Customer customer){
-        return customerService.updateCustomer(customerId, customer);
+        return customerServiceImpl.updateCustomer(customerId, customer);
     }
-
 }
