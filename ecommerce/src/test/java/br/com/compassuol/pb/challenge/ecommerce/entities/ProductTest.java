@@ -1,15 +1,22 @@
 package br.com.compassuol.pb.challenge.ecommerce.entities;
 
-import jakarta.persistence.EntityManager;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+import jakarta.validation.ValidatorFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class ProductTest {
     private Product product;
+
+    // Aqui instânciamos o ValidatorFactory que vai gerar nosso Validator
+    private final ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
+    // Nosso validator é responsável por validar os objetos com base nas anotações que usamos na Entity
+    // E assim obter as violações encontradas etc
+    private final Validator validator = validatorFactory.getValidator();
 
     @BeforeEach
     public void setUp() {
