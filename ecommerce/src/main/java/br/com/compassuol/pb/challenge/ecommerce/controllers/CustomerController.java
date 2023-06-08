@@ -3,6 +3,7 @@ package br.com.compassuol.pb.challenge.ecommerce.controllers;
 import java.util.Optional;
 
 import br.com.compassuol.pb.challenge.ecommerce.entities.Customer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,23 +18,21 @@ import br.com.compassuol.pb.challenge.ecommerce.services.CustomerService;
 
 @RestController
 public class CustomerController {
-
     private CustomerService customerService;
 
-
+    @Autowired
     public CustomerController(CustomerService customerService) {
         this.customerService = customerService;
     }
 
-
     //Endpoint to GET the product by id
     @GetMapping("/v1/customers/{customerId}")
-    public ResponseEntity<br.com.compassuol.pb.challenge.ecommerce.entities.Customer.Customer> getCustomer(@PathVariable int customerId){
+    public ResponseEntity<Customer> getCustomer(@PathVariable int customerId){
         
-        Optional<br.com.compassuol.pb.challenge.ecommerce.entities.Customer.Customer> customerOptional = customerService.findById(customerId);
+        Optional<Customer> customerOptional = customerService.findById(customerId);
 
         if (customerOptional.isPresent()) {
-            br.com.compassuol.pb.challenge.ecommerce.entities.Customer.Customer product = customerOptional.get();
+            Customer product = customerOptional.get();
             return ResponseEntity.ok(product);
         } else {
             throw new CustomerNotFoundException("Id Not Found:" + customerId);
@@ -42,15 +41,15 @@ public class CustomerController {
 
     
     @PostMapping("/v1/customers")
-    public br.com.compassuol.pb.challenge.ecommerce.entities.Customer.Customer addCustomer(@RequestBody br.com.compassuol.pb.challenge.ecommerce.entities.Customer.Customer customer){
+    public Customer addCustomer(@RequestBody Customer customer){
         return customerService.saveCustomer(customer);
     }
 
 
     
     @PutMapping("/v1/customers/{customerId}")
-    public br.com.compassuol.pb.challenge.ecommerce.entities.Customer.Customer updateCustomer(@PathVariable int customerId, @RequestBody Customer.Customer product){
-        return customerService.updateCustomer(customerId, product);
+    public Customer updateCustomer(@PathVariable int customerId, @RequestBody Customer customer){
+        return customerService.updateCustomer(customerId, customer);
     }
 
 }
