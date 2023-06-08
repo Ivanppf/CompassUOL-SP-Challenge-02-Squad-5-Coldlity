@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.compassuol.sp.challenge.ecommerce.entities.Customer;
-import br.com.compassuol.sp.challenge.ecommerce.entities.CustomerNotFoundException;
+import br.com.compassuol.sp.challenge.ecommerce.exceptions.CustomerNotFoundException;
 import br.com.compassuol.sp.challenge.ecommerce.repositories.CustomerRepository;
 
 @Service

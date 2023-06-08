@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.compassuol.sp.challenge.ecommerce.entities.Customer;
-import br.com.compassuol.sp.challenge.ecommerce.entities.CustomerNotFoundException;
+import br.com.compassuol.sp.challenge.ecommerce.exceptions.CustomerNotFoundException;
 import br.com.compassuol.sp.challenge.ecommerce.services.CustomerService;
 
 @RestController

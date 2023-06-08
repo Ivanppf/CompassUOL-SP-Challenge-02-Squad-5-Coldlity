@@ -1,4 +1,4 @@
-package br.com.compassuol.sp.challenge.ecommerce.entities;
+package br.com.compassuol.sp.challenge.ecommerce.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

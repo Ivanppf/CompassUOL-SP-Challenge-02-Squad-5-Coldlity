@@ -1,4 +1,4 @@
-package br.com.compassuol.sp.challenge.ecommerce.exception;
+package br.com.compassuol.sp.challenge.ecommerce.exceptions;
 
 import java.time.LocalDateTime;
 
