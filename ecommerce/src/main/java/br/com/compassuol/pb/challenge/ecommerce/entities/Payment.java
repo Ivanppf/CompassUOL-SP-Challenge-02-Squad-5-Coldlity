@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "Payment")
+@Table(name = "Payments")
 public class Payment {
     @Id
     @Column(name = "paymentId")

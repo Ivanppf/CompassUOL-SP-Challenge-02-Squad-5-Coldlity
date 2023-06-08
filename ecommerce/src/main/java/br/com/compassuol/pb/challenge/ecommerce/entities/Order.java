@@ -8,7 +8,7 @@ import jakarta.validation.constraints.Positive;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "orders")
+@Table(name = "Orders")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

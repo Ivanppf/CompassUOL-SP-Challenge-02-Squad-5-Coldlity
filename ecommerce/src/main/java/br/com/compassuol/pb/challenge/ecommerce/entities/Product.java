@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "products")
+@Table(name = "Products")
 public class Product {
     @Id
     @Column(name = "productId")
