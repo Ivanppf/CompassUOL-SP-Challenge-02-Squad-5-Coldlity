@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/v1")
 public class PaymentRestController {
+    // Service
     private PaymentServiceImpl paymentService;
 
+    // constructor - inject service dependency
     public PaymentRestController(PaymentServiceImpl paymentService) {
         this.paymentService = paymentService;
     }

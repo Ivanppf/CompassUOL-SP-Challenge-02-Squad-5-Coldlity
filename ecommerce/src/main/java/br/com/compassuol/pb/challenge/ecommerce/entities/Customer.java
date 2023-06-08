@@ -7,7 +7,6 @@ import jakarta.validation.constraints.Size;
 @Entity
 @Table(name = "Customers")
 public class Customer {
-
     @Id
     @Column(name = "customerId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

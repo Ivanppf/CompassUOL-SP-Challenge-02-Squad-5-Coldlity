@@ -32,7 +32,7 @@ public class OrderRestController {
         return orderService.findOrdersById(customerId);
     }
 
-    // add post method
+    // add Order
     @PostMapping("/orders")
     public Order addOrder(@RequestBody Order orderProps) {
         Order anOrder = orderService.saveOrder(orderProps);

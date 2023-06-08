@@ -30,6 +30,30 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
         return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.NOT_FOUND);
     }
 
+    // NAME CUSTOMER EXCEPTION
+    @ExceptionHandler(CustomerExceptions.CustomerNameException.class)
+    public final ResponseEntity<ErrorDetails> handleCustomerNameException(Exception ex, WebRequest request) throws Exception{
+        ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(), ex.getMessage(), request.getDescription(false));
+
+        return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.NOT_FOUND);
+    }
+
+    // CPF CUSTOMER EXCEPTION
+    @ExceptionHandler(CustomerExceptions.CustomerCpfException.class)
+    public final ResponseEntity<ErrorDetails> handleCustomerCpfException(Exception ex, WebRequest request) throws Exception{
+        ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(), ex.getMessage(), request.getDescription(false));
+
+        return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.NOT_FOUND);
+    }
+
+    // EMAIL CUSTOMER EXCEPTION
+    @ExceptionHandler(CustomerExceptions.CustomerEmailException.class)
+    public final ResponseEntity<ErrorDetails> handleCustomerEmailException(Exception ex, WebRequest request) throws Exception{
+        ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(), ex.getMessage(), request.getDescription(false));
+
+        return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.NOT_FOUND);
+    }
+
     // NOT FOUND PRODUCT
     @ExceptionHandler(ProductExceptions.ProductNotFoundException.class)
     public final ResponseEntity<ErrorDetails> handleProductNotFoundException(Exception ex, WebRequest request) throws Exception{
@@ -54,9 +78,17 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
         return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.BAD_REQUEST);
     }
 
-    // DESCRIPTION PRODUCT EXCEPTION
+    // PRICE PRODUCT EXCEPTION
     @ExceptionHandler(ProductExceptions.ProductPriceException.class)
     public final ResponseEntity<ErrorDetails> handleProductPriceException(Exception ex, WebRequest request) throws Exception{
+        ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(), ex.getMessage(), request.getDescription(false));
+
+        return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.BAD_REQUEST);
+    }
+
+    // ORDER NOT FOUND EXCEPTION
+    @ExceptionHandler(OrderExceptions.OrderNotFoundException.class)
+    public final ResponseEntity<ErrorDetails> handleOrderNotFoundException(Exception ex, WebRequest request) throws Exception{
         ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(), ex.getMessage(), request.getDescription(false));
 
         return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.BAD_REQUEST);
