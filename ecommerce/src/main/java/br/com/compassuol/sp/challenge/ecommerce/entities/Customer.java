@@ -1,8 +1,8 @@
-package br.com.compassuol.sp.challenge.ecommerce.entity;
+package br.com.compassuol.sp.challenge.ecommerce.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
-
 
 @Entity
 public class Customer {
@@ -10,20 +10,22 @@ public class Customer {
     @Id
     @Column(name = "customerid")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer customerId;
+    private Integer customerId;
 
     @Size(min = 3, message = "'name' deve ter no mínimo 3 caracteres")
     @Column(name = "name")
-    String name;
+    private String name;
 
+    @NotEmpty(message = "não pode ser nulo ou vazio")
     @Column(name = "cpf")
-    String cpf;
+    private String cpf;
 
+    @NotEmpty(message = "não pode ser nulo ou vazio")
     @Column(name = "email")
-    String email;
+    private String email;
 
     @Column(name = "active")
-    boolean active;
+    private boolean active;
 
     public Customer(){
         

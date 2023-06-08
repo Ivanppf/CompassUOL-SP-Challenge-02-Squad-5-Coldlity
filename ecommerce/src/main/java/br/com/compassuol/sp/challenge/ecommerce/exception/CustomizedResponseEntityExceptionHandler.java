@@ -10,19 +10,12 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import br.com.compassuol.sp.challenge.ecommerce.entity.CustomerNotFoundException;
-
+import br.com.compassuol.sp.challenge.ecommerce.entities.CustomerNotFoundException;
 
 
 @ControllerAdvice
 public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExceptionHandler{
     
-
-    /*
-     * Tratamento de erros personalizados, para erro interno no servidor
-     * e para produto não encontrado
-     */
-
     @ExceptionHandler(Exception.class)
     public final ResponseEntity<ErrorDetails> handleAllException(Exception ex, WebRequest request) throws Exception{
         ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(), ex.getMessage(), request.getDescription(false));
@@ -44,6 +37,4 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 
             return new ResponseEntity(errorDetails, HttpStatus.BAD_REQUEST);
     }
-    
-
 }
