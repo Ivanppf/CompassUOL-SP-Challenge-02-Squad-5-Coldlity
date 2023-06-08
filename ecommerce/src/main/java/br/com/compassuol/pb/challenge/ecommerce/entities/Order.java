@@ -2,39 +2,71 @@ package br.com.compassuol.pb.challenge.ecommerce.entities;
 
 import br.com.compassuol.pb.challenge.ecommerce.enums.StatusOption;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "orders")
-@Getter
-@Setter
-@NoArgsConstructor
-@ToString
 public class Order {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "orderId")
     private int orderId;
 
-    @Column(name = "customerId")
+    @Column(name = "customerId", nullable = false)
+    @NotNull(message = "'customerId' não pode ser nulo")
+    @Positive(message = "'customerId' deve ser um número positivo")
     private int customerId;
 
-    @Column(name = "orderDate")
-    private LocalDate orderDate;
+    @Column(name = "date", nullable = false)
+    private LocalDate date;
 
-    @Column(name = "status")
+    @Column(name = "status", nullable = false)
     private StatusOption status;
 
-    public Order(int orderId, int customerId, LocalDate orderDate, StatusOption status) {
-        this.orderId = orderId;
+    public Order(int customerId, LocalDate orderDate, StatusOption status) {
         this.customerId = customerId;
-        this.orderDate = orderDate;
+        this.date = orderDate;
         this.status = status;
+    }
+
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public int getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
+    }
+
+    public LocalDate getOrderDate() {
+        return date;
+    }
+
+    public void setOrderDate(LocalDate orderDate) {
+        this.date = orderDate;
+    }
+
+    public StatusOption getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusOption status) {
+        this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderId=" + orderId +
+                ", customerId=" + customerId +
+                ", orderDate=" + date +
+                ", status=" + status +
+                '}';
     }
 }

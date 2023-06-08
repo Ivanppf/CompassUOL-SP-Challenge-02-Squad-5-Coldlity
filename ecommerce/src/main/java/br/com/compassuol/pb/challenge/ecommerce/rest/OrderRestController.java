@@ -24,12 +24,9 @@ public class OrderRestController {
         return orderService.findAll();
     }
 
-
     //get specific order
-
     @GetMapping("/orders/{orderId}")
     public Order getOrder(@PathVariable int orderId) {
-
         Order order = orderService.findById(orderId);
 
         if (order == null)
@@ -37,17 +34,12 @@ public class OrderRestController {
             throw new RuntimeException("Order id not found - " + orderId);
 
         return order;
-
     }
 
     // add post method
-
     @PostMapping("/orders")
-
     public Order addOrder(@RequestBody Order order) {
-
         Order anOrder = orderService.save(order);
         return anOrder;
-
     }
 }
