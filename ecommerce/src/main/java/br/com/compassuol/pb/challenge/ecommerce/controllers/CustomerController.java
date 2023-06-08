@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.compassuol.pb.challenge.ecommerce.exceptions.CustomerNotFoundException;
 import br.com.compassuol.pb.challenge.ecommerce.services.CustomerServiceImpl;
 
 @RestController

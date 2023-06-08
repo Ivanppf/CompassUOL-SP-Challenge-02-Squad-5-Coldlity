@@ -24,5 +24,4 @@ public class ErrorDetails {
     public String getDetails() {
         return this.details;
     }
-
 }

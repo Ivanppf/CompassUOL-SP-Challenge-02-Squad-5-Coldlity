@@ -17,11 +17,11 @@ public class Customer {
     private String name;
 
     @NotEmpty(message = "não pode ser nulo ou vazio")
-    @Column(name = "cpf")
+    @Column(name = "cpf", unique = true)
     private String cpf;
 
     @NotEmpty(message = "não pode ser nulo ou vazio")
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String email;
 
     @Column(name = "active")
@@ -40,10 +40,6 @@ public class Customer {
 
     public Integer getCustomerId() {
         return customerId;
-    }
-
-    public void setCustomerId(Integer customerId) {
-        this.customerId = customerId;
     }
 
     public String getName() {
