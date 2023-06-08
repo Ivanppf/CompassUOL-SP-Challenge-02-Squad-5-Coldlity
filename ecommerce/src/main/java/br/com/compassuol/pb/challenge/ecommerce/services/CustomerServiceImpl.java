@@ -84,7 +84,7 @@ public class CustomerServiceImpl implements CustomerService {
             customers.setActive(customerProps.isActive());
 
             return customerRepository.save(customers);
-        }else{
+        } else{
             throw new CustomerExceptions.CustomerNotFoundException("CUSTOMER ID (" + customerId + ") NÃO ENCONTRADO");
         }
     }

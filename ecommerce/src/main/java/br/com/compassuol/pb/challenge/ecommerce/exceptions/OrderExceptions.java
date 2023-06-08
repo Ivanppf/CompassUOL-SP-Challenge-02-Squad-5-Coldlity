@@ -10,4 +10,11 @@ public class OrderExceptions {
             super(message);
         }
     }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public static class OrderPaymentStatusConfirmedException extends RuntimeException {
+        public OrderPaymentStatusConfirmedException (String message) {
+            super(message);
+        }
+    }
 }

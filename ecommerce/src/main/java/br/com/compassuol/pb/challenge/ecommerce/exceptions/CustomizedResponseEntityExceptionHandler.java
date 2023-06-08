@@ -94,6 +94,14 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
         return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.BAD_REQUEST);
     }
 
+    // ORDER NOT FOUND EXCEPTION
+    @ExceptionHandler(OrderExceptions.OrderPaymentStatusConfirmedException.class)
+    public final ResponseEntity<ErrorDetails> handleOrderPaymentStatusConfirmedException(Exception ex, WebRequest request) throws Exception{
+        ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(), ex.getMessage(), request.getDescription(false));
+
+        return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.BAD_REQUEST);
+    }
+
     @Override
     protected org.springframework.http.ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
         ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(),
