@@ -1,4 +1,4 @@
-package br.com.compassuol.pb.challenge.ecommerce.rest;
+package br.com.compassuol.pb.challenge.ecommerce.controllers;
 
 import br.com.compassuol.pb.challenge.ecommerce.entities.Order;
 import br.com.compassuol.pb.challenge.ecommerce.service.OrderService;

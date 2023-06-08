@@ -20,15 +20,19 @@ public class Order {
     @Positive(message = "'customerId' deve ser um número positivo")
     private int customerId;
 
-    @Column(name = "date", nullable = false)
+    @Column(name = "date")
     private LocalDate date;
 
     @Column(name = "status", nullable = false)
     private StatusOption status;
 
-    public Order(int customerId, LocalDate orderDate, StatusOption status) {
+    public Order() {
+
+    }
+
+    public Order(int customerId, LocalDate date, StatusOption status) {
         this.customerId = customerId;
-        this.date = orderDate;
+        this.date = date;
         this.status = status;
     }
 
@@ -48,8 +52,8 @@ public class Order {
         return date;
     }
 
-    public void setOrderDate(LocalDate orderDate) {
-        this.date = orderDate;
+    public void setOrderDate(LocalDate date) {
+        this.date = date;
     }
 
     public StatusOption getStatus() {
