@@ -37,9 +37,9 @@ class ProductServiceImplTest {
     void testFindAllProducts() {
         // Lista de produtos simulando aqueles que estão cadastrados no banco
         List<Product> products = Arrays.asList(
-                new Product("Produto 1", 100.99f, "Produto 1"),
-                new Product("Produto 2", 5.75f, "Produto 2"),
-                new Product("Produto 3", 9.99f, "Produto 3")
+                new Product("Produto TESTE 1", 100.99f, "Produto TESTE 1"),
+                new Product("Produto TESTE 2", 5.75f, "Produto TESTE 2"),
+                new Product("Produto TESTE 3", 9.99f, "Produto TESTE 3")
         );
 
         // Definindo o comportamento do nosso método findAll do repository
@@ -51,14 +51,14 @@ class ProductServiceImplTest {
         List<Product> listProducts = productService.findAllProducts();
 
         // Verificações de name
-        assertEquals("Produto 1", listProducts.get(0).getName());
-        assertEquals("Produto 2", listProducts.get(1).getName());
-        assertEquals("Produto 3", listProducts.get(2).getName());
+        assertEquals("Produto TESTE 1", listProducts.get(0).getName());
+        assertEquals("Produto TESTE 2", listProducts.get(1).getName());
+        assertEquals("Produto TESTE 3", listProducts.get(2).getName());
 
         // Verificações de description
-        assertEquals("Produto 1", listProducts.get(0).getDescription());
-        assertEquals("Produto 2", listProducts.get(1).getDescription());
-        assertEquals("Produto 3", listProducts.get(2).getDescription());
+        assertEquals("Produto TESTE 1", listProducts.get(0).getDescription());
+        assertEquals("Produto TESTE 2", listProducts.get(1).getDescription());
+        assertEquals("Produto TESTE 3", listProducts.get(2).getDescription());
 
         // Verificações de price
         assertEquals(100.99f, listProducts.get(0).getPrice());
@@ -67,5 +67,41 @@ class ProductServiceImplTest {
 
         // Verificando o tamanho da lista que foi retornado
         assertEquals(3, listProducts.size());
+    }
+
+    @Test
+    @DisplayName("Teste - Product com name inválido")
+    void testProductInvalidNameExceptionThrow() {
+        // Product com o nome inválido
+        Product productToBeSaved = new Product("Pr", 100.99f, "Produto TESTE 1");
+
+        // Verificando se estamos lançando a exceção correta para esse tipo de problema
+        assertThrows(ProductExceptions.ProductNameException.class, () -> {
+            productService.saveProduct(productToBeSaved);
+        });
+    }
+
+    @Test
+    @DisplayName("Teste - Product com description inválida")
+    void testProductInvalidDescriptionExceptionThrow() {
+        // Product com a description inválida
+        Product productToBeSaved = new Product("Produto TESTE 1", 100.99f, "Pr");
+
+        // Verificando se estamos lançando a exceção correta para esse tipo de problema
+        assertThrows(ProductExceptions.ProductDescriptionException.class, () -> {
+            productService.saveProduct(productToBeSaved);
+        });
+    }
+
+    @Test
+    @DisplayName("Teste - Product com price inválido")
+    void testProductInvalidPriceExceptionThrow() {
+        // Product com o price inválido
+        Product productToBeSaved = new Product("Produto TESTE 1", -1f, "Produto TESTE 1");
+
+        // Verificando se estamos lançando a exceção correta para esse tipo de problema
+        assertThrows(ProductExceptions.ProductPriceException.class, () -> {
+            productService.saveProduct(productToBeSaved);
+        });
     }
 }

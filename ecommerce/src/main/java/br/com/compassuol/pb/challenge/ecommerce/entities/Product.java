@@ -1,10 +1,7 @@
 package br.com.compassuol.pb.challenge.ecommerce.entities;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 @Entity
 @Table(name = "Products")
@@ -15,7 +12,7 @@ public class Product {
     private Integer productId;
 
     @Column(nullable = false, length = 50)
-    @NotEmpty(message = "'name' não pode ser nulo ou vazio")
+    @NotBlank(message = "'name' não pode ser nulo ou vazio")
     @Size(min = 3, message = "'name' deve ter no mínimo 3 caracteres")
     private String name;
 
@@ -25,7 +22,7 @@ public class Product {
     private float price;
 
     @Column(nullable = false, length = 100)
-    @NotEmpty(message = "'description' não pode ser nulo ou vazio")
+    @NotBlank(message = "'description' não pode ser nulo ou vazio")
     @Size(min = 3, message = "O campo 'description' deve ter no mínimo 3 caracteres")
     private String description;
 
