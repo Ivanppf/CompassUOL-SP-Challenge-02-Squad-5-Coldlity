@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 class ProductServiceImplTest {
@@ -36,7 +37,7 @@ class ProductServiceImplTest {
     }
 
     @Test
-    @DisplayName("Buscando todos os Products - findAllProducts()")
+    @DisplayName("Teste - Buscando todos os produtos")
     void testFindAllProducts() {
         // Lista de produtos simulando aqueles que estão cadastrados no banco
         List<Product> products = Arrays.asList(
@@ -141,4 +142,57 @@ class ProductServiceImplTest {
             productService.deleteProductById(productId);
         });
     }
+
+    @Test
+    @DisplayName("Teste - Atualizando um produto")
+    void testUpdateProductByIdOk() {
+        int productId = 1;
+        Product product = new Product("Produto TESTE 1", 100.99f, "Produto TESTE 1");
+
+        // Definindo o comportamento do nosso método findById do repository
+        // Que é um dos métodos usados pelo updateProductById para ver se o product existe
+        // Neste estamos dizendo que ele irá retornar um Optional Product
+        when(productRepository.findById(productId)).thenReturn(Optional.of(product));
+
+        // Aqui definimos que quando chamarmos nosso .save ele irá retornar um Product
+        when(productRepository.save(any(Product.class))).thenReturn(product);
+
+        String newName = "Produto TESTE 1 - PUT";
+        float newPrice = 1000.99f;
+        String newDescription = "Produto TESTE 1 - PUT";
+
+        // Criando uma instância do nosso Product
+        Product productNewProps = new Product(newName, newPrice, newDescription);
+
+        // Chamando o método e passando nosso productId e os novos dados do Product
+        Product productToBeSaved = productService.updateProductById(productId, productNewProps);
+
+        // Verificando se as informações foram alteradas realmente
+        assertEquals(newName, productToBeSaved.getName());
+        assertEquals(newPrice, productToBeSaved.getPrice());
+        assertEquals(newDescription, productToBeSaved.getDescription());
+    }
+
+    @Test
+    @DisplayName("Teste - Tentando mudar os atributos de um produto que não existe")
+    void testUpdateProductByIdNotFound() {
+        int productId = 1;
+
+        // Definindo o comportamento do nosso método findById do repository
+        // Que é um dos métodos usados pelo updateProductById para ver se o product existe
+        // Neste estamos dizendo que ele irá retornar um Optional vazio
+        when(productRepository.findById(productId)).thenReturn(Optional.empty());
+
+        String newName = "Produto TESTE 1 - PUT";
+        float newPrice = 1000.99f;
+        String newDescription = "Produto TESTE 1 - PUT";
+
+        Product productNewProps = new Product(newName, newPrice, newDescription);
+
+        // Verificando se a exception de Not Found é lançada corretamente
+        assertThrows(ProductExceptions.ProductNotFoundException.class, () -> {
+            productService.updateProductById(productId, productNewProps);
+        });
+    }
+
 }
