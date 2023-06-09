@@ -6,7 +6,6 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 @Table(name = "Orders")
@@ -14,12 +13,12 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "orderId")
-    private int orderId;
+    private Integer orderId;
 
     @Column(name = "customerId", nullable = false)
     @NotNull(message = "'customerId' não pode ser nulo")
     @Positive(message = "'customerId' deve ser um número positivo")
-    private int customerId;
+    private Integer customerId;
 
     @Column(name = "date", nullable = false)
     private LocalDate date;

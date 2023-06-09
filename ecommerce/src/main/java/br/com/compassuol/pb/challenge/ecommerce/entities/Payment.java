@@ -12,11 +12,11 @@ public class Payment {
     @Id
     @Column(name = "paymentId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int paymentId;
+    private Integer paymentId;
 
     @Column(name = "orderId", nullable = false)
     @NotNull(message = "'orderId' não pode ser nulo ou vazio")
-    private int orderId;
+    private Integer orderId;
 
     @Column(nullable = false)
     @NotNull(message = "'paymentMethod' não pode ser nulo ou vazio")

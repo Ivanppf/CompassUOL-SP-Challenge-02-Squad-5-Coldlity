@@ -33,8 +33,8 @@ class ProductTest {
 
         // Neste caso ele irá ver se o getProductId() retorna 0
         // isso será verdadeiro pois o Id só é gerado depois que é inserido no banco
-        // Então ele irá retornar 0
-        assertEquals(0, product.getProductId());
+        // Então ele irá retornar null
+        assertEquals(null, product.getProductId());
 
         // Testando pra ver se o name que nos demos na inicialização do objeto
         // Corresponde com o que foi salvo
@@ -57,8 +57,8 @@ class ProductTest {
 
         // Neste caso ele irá ver se o getProductId() retorna 0
         // isso será verdadeiro pois o Id só é gerado depois que é inserido no banco
-        // Então ele irá retornar 0
-        assertEquals(0, product.getProductId());
+        // Então ele irá retornar null
+        assertEquals(null, product.getProductId());
 
         // Aqui estamos vendo se o update do campo name está
         // sendo feito corretamente
