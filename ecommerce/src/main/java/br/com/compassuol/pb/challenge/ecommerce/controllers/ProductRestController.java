@@ -34,19 +34,19 @@ public class ProductRestController {
     }
 
     // return 1 product (search id)
-    @GetMapping("/products/{id}")
+    @GetMapping("/products/{productId}")
     public ResponseEntity<Product> getProductById(@PathVariable int productId) {
         return service.findProductById(productId);
     }
 
     // update 1 product (search id)
-    @PutMapping("/products/{id}")
+    @PutMapping("/products/{productId}")
     public Product updateProductById(@PathVariable int productId, @RequestBody Product productProps) {
         return service.updateProductById(productId, productProps);
     }
 
     // delete 1 product
-    @DeleteMapping("/products/{id}")
+    @DeleteMapping("/products/{productId}")
     public ResponseEntity<Object> deleteProductById(@PathVariable int productId) {
         return service.deleteProductById(productId);
     }
