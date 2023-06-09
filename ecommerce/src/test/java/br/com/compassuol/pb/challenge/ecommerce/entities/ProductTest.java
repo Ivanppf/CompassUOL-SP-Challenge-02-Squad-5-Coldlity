@@ -4,6 +4,7 @@ import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
 
@@ -26,6 +27,7 @@ class ProductTest {
     }
 
     @Test
+    @DisplayName("Teste - Criação de um Product")
     public void testProductInit() {
         // verificando se a instância de nosso objeto não é nula
         // ou seja, se ele criou o objeto
@@ -50,6 +52,7 @@ class ProductTest {
     }
 
     @Test
+    @DisplayName("Teste - Alterando dados de um Product")
     public void testProductUpdateInfos() {
         // verificando se a instância de nosso objeto não é nula
         // ou seja, se ele criou o objeto

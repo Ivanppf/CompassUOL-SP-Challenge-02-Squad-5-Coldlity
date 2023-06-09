@@ -1,5 +1,6 @@
 package br.com.compassuol.pb.challenge.ecommerce.exceptions;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 
@@ -9,6 +10,7 @@ class ProductExceptionsTest {
     // testando se nossa exception do nome está funcionando corretamente colocando a mensagem certa
     // o status certo e se está sendo gerada da classe certa
     @Test
+    @DisplayName("Teste - ProductNameException")
     void testProductNameException() {
         String message = "O ATRIBUTO NAME ESTÁ COM ALGUM PROBLEMA - ELE NÃO PODE SER NULO OU VAZIO E DEVE TER NO MINIMO 3 CARACTERES";
 
@@ -24,6 +26,7 @@ class ProductExceptionsTest {
     // testando se nossa exception do price está funcionando corretamente colocando a mensagem certa
     // o status certo e se está sendo gerada da classe certa
     @Test
+    @DisplayName("Test - ProductPriceException")
     void testProductPriceException() {
         String message = "O ATRIBUTO PRICE ESTÁ COM ALGUM PROBLEMA - ELE NÃO PODE SER NULO OU MENOR QUE 0";
 
@@ -39,6 +42,7 @@ class ProductExceptionsTest {
     // testando se nossa exception da description está funcionando corretamente colocando a mensagem certa
     // o status certo e se está sendo gerada da classe certa
     @Test
+    @DisplayName("Teste - ProductDescriptionException")
     void testProductDescriptionException() {
         String message = "O ATRIBUTO DESCRIPTION ESTÁ COM ALGUM PROBLEMA - ELE NÃO PODE SER NULO OU VAZIO E DEVE TER NO MINIMO 3 CARACTERES";
 
@@ -55,6 +59,7 @@ class ProductExceptionsTest {
     // funcionando corretamente colocando a mensagem certa
     // o status certo e se está sendo gerada da classe certa
     @Test
+    @DisplayName("Teste - ProductNotFoundException")
     void testProductNotFoundException() {
         String message = "O PRODUTO NÃO FOI ENCONTRADO";
 
