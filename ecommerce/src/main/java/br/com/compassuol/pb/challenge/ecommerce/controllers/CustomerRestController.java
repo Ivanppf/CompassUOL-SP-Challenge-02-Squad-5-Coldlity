@@ -1,12 +1,10 @@
 package br.com.compassuol.pb.challenge.ecommerce.controllers;
 
 import br.com.compassuol.pb.challenge.ecommerce.entities.Customer;
+import br.com.compassuol.pb.challenge.ecommerce.services.CustomerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-
 import org.springframework.web.bind.annotation.*;
-
-import br.com.compassuol.pb.challenge.ecommerce.services.CustomerServiceImpl;
 
 @RestController
 @RequestMapping("/v1")

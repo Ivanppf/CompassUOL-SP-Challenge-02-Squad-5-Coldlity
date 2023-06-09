@@ -1,14 +1,13 @@
 package br.com.compassuol.pb.challenge.ecommerce.services;
 
-import java.util.Optional;
-
 import br.com.compassuol.pb.challenge.ecommerce.entities.Customer;
 import br.com.compassuol.pb.challenge.ecommerce.exceptions.CustomerExceptions;
+import br.com.compassuol.pb.challenge.ecommerce.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import br.com.compassuol.pb.challenge.ecommerce.repositories.CustomerRepository;
+import java.util.Optional;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
