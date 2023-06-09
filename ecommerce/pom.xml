@@ -30,17 +30,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-<<<<<<< HEAD
 
-<!--		<dependency>-->
-<!--			<groupId>org.junit.jupiter</groupId>-->
-<!--			<artifactId>junit-jupiter-api</artifactId>-->
-<!--			<version>5.8.1</version>-->
-<!--			<scope>test</scope>-->
-<!--		</dependency>-->
-
-=======
->>>>>>> 959da75e9626dc9fa9f05fe02ce79002ea54fece
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
