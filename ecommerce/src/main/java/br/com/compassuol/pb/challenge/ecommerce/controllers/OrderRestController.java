@@ -28,7 +28,7 @@ public class OrderRestController {
 
     // getting specific orders from a customer
     @GetMapping("/orders/customers/{customerId}")
-    public Optional<Order> getOrders(@PathVariable int customerId) {
+    public List<Order> getOrderByCustomerId(@PathVariable int customerId) {
         return orderService.findOrdersById(customerId);
     }
 

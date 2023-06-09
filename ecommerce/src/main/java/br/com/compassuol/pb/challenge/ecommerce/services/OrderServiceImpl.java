@@ -33,11 +33,11 @@ public class OrderServiceImpl implements OrderService {
     // returning orders from a specific customer
     // NÃO RETORNA TODOS AS ORDERS
     @Override
-    public Optional<Order> findOrdersById(int customerId) {
+    public List<Order> findOrdersById(int customerId) {
         Optional<Customer> customerOptional = customerRepository.findById(customerId);
 
         if (customerOptional.isPresent()) {
-            return orderRepository.findById(customerId);
+            return orderRepository.findAllByCustomerId(customerId);
         } else {
             throw new CustomerExceptions.CustomerNotFoundException("CUSTOMER ID (" + customerId + ") NÃO ENCONTRADO");
         }

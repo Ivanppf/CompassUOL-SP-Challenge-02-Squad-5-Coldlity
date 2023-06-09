@@ -12,15 +12,16 @@ import java.time.LocalDate;
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "orderId")
+    @Column(name = "order_id")
     private Integer orderId;
 
-    @Column(name = "customerId", nullable = false)
+    //@ForeignKey()
+    @Column(name = "customer_id", nullable = false)
     @NotNull(message = "'customerId' não pode ser nulo")
     @Positive(message = "'customerId' deve ser um número positivo")
     private Integer customerId;
 
-    @Column(name = "date", nullable = false)
+    @Column(name = "orderDate", nullable = false)
     private LocalDate date;
 
     @Column(name = "status", nullable = false)
