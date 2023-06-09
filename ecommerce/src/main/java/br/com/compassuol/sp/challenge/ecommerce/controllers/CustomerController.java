@@ -20,13 +20,10 @@ public class CustomerController {
 
     private CustomerService customerService;
 
-
     public CustomerController(CustomerService customerService) {
         this.customerService = customerService;
     }
 
-
-    //Endpoint to GET the product by id
     @GetMapping("/v1/customers/{customerId}")
     public ResponseEntity<Customer> getCustomer(@PathVariable int customerId){
         
@@ -40,14 +37,12 @@ public class CustomerController {
         }
     }
 
-    
     @PostMapping("/v1/customers")
     public Customer addCustomer(@RequestBody Customer customer){
         return customerService.saveCustomer(customer);
     }
 
 
-    
     @PutMapping("/v1/customers/{customerId}")
     public Customer updateCustomer(@PathVariable int customerId, @RequestBody Customer product){
         return customerService.updateCustomer(customerId, product);
