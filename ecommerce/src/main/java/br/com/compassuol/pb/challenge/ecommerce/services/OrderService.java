@@ -9,7 +9,7 @@ public interface OrderService {
 
     public List<Order> findAllOrders();
 
-    public List<Order> findOrdersById(int id);
+    public List<Order> findOrdersByCustomerId(int id);
 
     public Order saveOrder(Order order);
 }

@@ -27,17 +27,18 @@ public class OrderServiceImpl implements OrderService {
     // return all Orders
     @Override
     public List<Order> findAllOrders() {
+
         return orderRepository.findAll();
     }
 
     // returning orders from a specific customer
-    // NÃO RETORNA TODOS AS ORDERS
     @Override
-    public List<Order> findOrdersById(int customerId) {
+    public List<Order> findOrdersByCustomerId(int customerId) {
         Optional<Customer> customerOptional = customerRepository.findById(customerId);
 
         if (customerOptional.isPresent()) {
-            return orderRepository.findAllByCustomerId(customerId);
+
+            return orderRepository.findAllByCustomer_CustomerId(customerId);
         } else {
             throw new CustomerExceptions.CustomerNotFoundException("CUSTOMER ID (" + customerId + ") NÃO ENCONTRADO");
         }
@@ -46,12 +47,12 @@ public class OrderServiceImpl implements OrderService {
     // save 1 order
     @Override
     public Order saveOrder(Order orderProps) {
-        Optional<Customer> customerOptional = customerRepository.findById(orderProps.getCustomerId());
-
+        int customerId = orderProps.getCustomer();
+        Optional<Customer> customerOptional = customerRepository.findById(customerId);
         if (customerOptional.isPresent()) {
             return orderRepository.save(orderProps);
         } else {
-            throw new CustomerExceptions.CustomerNotFoundException("CUSTOMER ID (" + orderProps.getCustomerId() + ") NÃO ENCONTRADO");
+            throw new CustomerExceptions.CustomerNotFoundException("CUSTOMER ID (" + customerId + ") NÃO ENCONTRADO");
         }
     }
 }

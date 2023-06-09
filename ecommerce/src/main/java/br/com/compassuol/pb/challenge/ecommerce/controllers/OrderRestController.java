@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+
 @RestController
 @RequestMapping("/v1")
 public class OrderRestController {
@@ -21,7 +23,7 @@ public class OrderRestController {
     }
 
     //get all orders
-    @GetMapping("/orders")
+    @GetMapping(value = "/orders")
     public List<Order> findAll() {
         return orderService.findAllOrders();
     }
@@ -29,7 +31,7 @@ public class OrderRestController {
     // getting specific orders from a customer
     @GetMapping("/orders/customers/{customerId}")
     public List<Order> getOrderByCustomerId(@PathVariable int customerId) {
-        return orderService.findOrdersById(customerId);
+        return orderService.findOrdersByCustomerId(customerId);
     }
 
     // add Order

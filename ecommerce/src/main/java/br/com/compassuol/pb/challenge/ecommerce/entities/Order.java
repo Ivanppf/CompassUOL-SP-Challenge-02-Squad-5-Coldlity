@@ -15,11 +15,12 @@ public class Order {
     @Column(name = "order_id")
     private Integer orderId;
 
-    //@ForeignKey()
-    @Column(name = "customer_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "customer_id")
+//    @Column(name = "customer_id", nullable = false)
     @NotNull(message = "'customerId' não pode ser nulo")
     @Positive(message = "'customerId' deve ser um número positivo")
-    private Integer customerId;
+    private Customer customer;
 
     @Column(name = "orderDate", nullable = false)
     private LocalDate date;
@@ -32,8 +33,8 @@ public class Order {
 
     }
 
-    public Order(int customerId, LocalDate date, StatusOptions status) {
-        this.customerId = customerId;
+    public Order(Customer customer, LocalDate date, StatusOptions status) {
+        this.customer = customer;
         this.date = date;
         this.status = status;
     }
@@ -42,9 +43,12 @@ public class Order {
         return orderId;
     }
 
-    public int getCustomerId() {
-        return customerId;
+    public int getCustomer() {
+        return customer.getCustomerId();
     }
+//    public Customer getCustomer() {
+//        return customer;
+//    }
 
     public LocalDate getDate() {
         return date;
@@ -62,7 +66,7 @@ public class Order {
     public String toString() {
         return "Order{" +
                 "orderId=" + orderId +
-                ", customerId=" + customerId +
+                ", customerId=" + customer +
                 ", date=" + date +
                 ", status=" + status +
                 '}';
