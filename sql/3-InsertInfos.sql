@@ -32,4 +32,3 @@ VALUES ('CREDIT_CARD', '2023-06-01', 1);
 
 INSERT INTO Payments (paymentMethod, paymentDate, orderId)
 VALUES ('TRANSFER', '2023-06-02', 2);
-

@@ -47,20 +47,20 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ResponseEntity<Product> findOneProduct(int id) {
-        Optional<Product> productOptional = productRepository.findById(id);
+    public ResponseEntity<Product> findProductById(int productId) {
+        Optional<Product> productOptional = productRepository.findById(productId);
 
         if (productOptional.isPresent()) {
             Product product = productOptional.get();
             return ResponseEntity.ok(product);
         } else {
-            throw new ProductExceptions.ProductNotFoundException("PRODUCT " + id + " NÃO ENCONTRADO");
+            throw new ProductExceptions.ProductNotFoundException("PRODUCT ID (" + productId + ") NÃO ENCONTRADO");
         }
     }
 
     @Override
-    public ResponseEntity<String> updateProductById(int id, Product productProps) {
-        Optional<Product> productOptional = productRepository.findById(id);
+    public Product updateProductById(int productId, Product productProps) {
+        Optional<Product> productOptional = productRepository.findById(productId);
 
         if (productOptional.isPresent()) {
             Product product = productOptional.get();
@@ -84,24 +84,22 @@ public class ProductServiceImpl implements ProductService {
             product.setPrice(productProps.getPrice());
             product.setDescription(productProps.getDescription());
 
-            productRepository.save(product);
-
-            return ResponseEntity.status(HttpStatus.OK).body("PRODUTO " + id + " ATUALIZADO COM SUCESSO");
+            return productRepository.save(product);
         } else {
-            throw new ProductExceptions.ProductNotFoundException("PRODUCT " + id + " NÃO ENCONTRADO");
+            throw new ProductExceptions.ProductNotFoundException("PRODUCT ID (" + productId + ") NÃO ENCONTRADO");
         }
     }
 
     @Override
-    public ResponseEntity<Object> deleteProductById(int id) {
-        Optional<Product> productOptional = productRepository.findById(id);
+    public ResponseEntity<Object> deleteProductById(int productId) {
+        Optional<Product> productOptional = productRepository.findById(productId);
 
         if (productOptional.isPresent()) {
-            productRepository.deleteById(id);
+            productRepository.deleteById(productId);
 
-            return ResponseEntity.status(HttpStatus.OK).body("PRODUTO " + id + " EXCLUIDO COM SUCESSO");
+            return ResponseEntity.status(HttpStatus.OK).body("PRODUTO ID (" + productId + ") EXCLUIDO COM SUCESSO");
         } else {
-            throw new ProductExceptions.ProductNotFoundException("PRODUCT " + id + " NÃO ENCONTRADO");
+            throw new ProductExceptions.ProductNotFoundException("PRODUCT ID (" + productId + ") NÃO ENCONTRADO");
         }
     }
 }

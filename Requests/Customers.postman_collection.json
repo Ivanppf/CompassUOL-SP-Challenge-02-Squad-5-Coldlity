@@ -1,0 +1,90 @@
+{
+	"info": {
+		"_postman_id": "6be135bd-84c8-4842-bfad-8921341bbc30",
+		"name": "Customers",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27499813"
+	},
+	"item": [
+		{
+			"name": "Post request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"Robson\",\r\n    \"cpf\" : \"479.251.674-83\",\r\n    \"email\" : \"rbson@gmail.com\",\r\n    \"active\" : true\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/v1/customers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get id request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/v1/customers/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"customers",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put request",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"Margaret Thompson\",\r\n    \"cpf\" : \"479.151.654-83\",\r\n    \"email\" : \"margaret@gmail.com\",\r\n    \"active\" : true\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/v1/customers/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"customers",
+						"4"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

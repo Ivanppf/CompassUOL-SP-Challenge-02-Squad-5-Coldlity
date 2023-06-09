@@ -3,7 +3,7 @@ package br.com.compassuol.pb.challenge.ecommerce.exceptions;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ProductExceptionsTest {
     // testando se nossa exception do nome está funcionando corretamente colocando a mensagem certa

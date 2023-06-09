@@ -7,12 +7,12 @@ import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "products")
+@Table(name = "Products")
 public class Product {
     @Id
     @Column(name = "productId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int productId;
+    private Integer productId;
 
     @Column(nullable = false, length = 50)
     @NotEmpty(message = "'name' não pode ser nulo ou vazio")
