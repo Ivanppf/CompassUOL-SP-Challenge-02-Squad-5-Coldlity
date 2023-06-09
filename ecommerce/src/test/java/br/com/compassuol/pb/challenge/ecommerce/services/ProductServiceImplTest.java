@@ -9,9 +9,12 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
@@ -102,6 +105,40 @@ class ProductServiceImplTest {
         // Verificando se estamos lançando a exceção correta para esse tipo de problema
         assertThrows(ProductExceptions.ProductPriceException.class, () -> {
             productService.saveProduct(productToBeSaved);
+        });
+    }
+
+    @Test
+    @DisplayName("Teste - Deletando um Product")
+    void testDeleteProductByIdOk() {
+        int productId = 1;
+
+        // Definindo o comportamento do nosso método findById do repository
+        // Que é um dos métodos usados pelo deleteProductById para ver se o product existe
+        // Neste estamos dizendo que ele irá retornar um Optional do Product que estamos criando
+        when(productRepository.findById(productId)).thenReturn(Optional.of(new Product("Produto TESTE 1", 100.99f, "Produto TESTES 1")));
+
+        // Chamando o método de fato para testa-lo
+        ResponseEntity<Object> response = productService.deleteProductById(productId);
+
+        // Verificando se a resposta está sendo conforme planejamos
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals("PRODUTO ID (1) EXCLUIDO COM SUCESSO", response.getBody());
+    }
+
+    @Test
+    @DisplayName("Teste - Tentando deletar um produto que não existe")
+    void testDeleteProductByIdNotFound() {
+        int productId = 1;
+
+        // Definindo o comportamento do nosso método findById do repository
+        // Que é um dos métodos usados pelo deleteProductById para ver se o product existe
+        // Neste estamos dizendo que ele irá retornar um Optional vazio
+        when(productRepository.findById(productId)).thenReturn(Optional.empty());
+
+        // Verificando se a resposta está sendo conforme planejamos, neste caso se a exception está correta
+        assertThrows(ProductExceptions.ProductNotFoundException.class, () -> {
+            productService.deleteProductById(productId);
         });
     }
 }
