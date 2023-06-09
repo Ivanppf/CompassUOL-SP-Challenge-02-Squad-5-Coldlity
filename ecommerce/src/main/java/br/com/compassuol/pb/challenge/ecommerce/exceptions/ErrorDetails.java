@@ -1,4 +1,4 @@
-package br.com.compassuol.sp.challenge.ecommerce.exceptions;
+package br.com.compassuol.pb.challenge.ecommerce.exceptions;
 
 import java.time.LocalDateTime;
 
@@ -24,5 +24,4 @@ public class ErrorDetails {
     public String getDetails() {
         return this.details;
     }
-
 }

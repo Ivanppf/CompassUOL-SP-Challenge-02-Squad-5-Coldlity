@@ -1,14 +1,14 @@
-package br.com.compassuol.sp.challenge.ecommerce.entities;
+package br.com.compassuol.pb.challenge.ecommerce.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
 @Entity
+@Table(name = "Customers")
 public class Customer {
-    
     @Id
-    @Column(name = "customerid")
+    @Column(name = "customerId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer customerId;
 
@@ -28,7 +28,7 @@ public class Customer {
     private boolean active;
 
     public Customer(){
-        
+
     }
 
     public Customer(String name, String cpf, String email, boolean active) {
@@ -40,10 +40,6 @@ public class Customer {
 
     public Integer getCustomerId() {
         return customerId;
-    }
-
-    public void setCustomerId(Integer customerId) {
-        this.customerId = customerId;
     }
 
     public String getName() {
