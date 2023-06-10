@@ -1,7 +1,6 @@
-package br.com.compassuol.pb.challenge.ecommerce.services;
-
 import br.com.compassuol.pb.challenge.ecommerce.entities.Customer;
 import br.com.compassuol.pb.challenge.ecommerce.repositories.CustomerRepository;
+import org.assertj.core.api.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -9,15 +8,18 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.ResponseEntity;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class CustomerServiceImplTest {
+class CustomerServiceTest {
 
     @Mock
     private CustomerRepository customerRepository;
@@ -28,39 +30,27 @@ class CustomerServiceImplTest {
     @Test
     void findCustomerById() {
 
-        //criando o novo objeto que o mock irá retornar
         Customer customer = new Customer();
-        // quando o repository receber uma chamada pra um findId de 1, retorna o objeto
-        when(customerRepository.findById(1)).thenReturn(Optional.of(customer));
-        //chama o metodo na classe que esta sendo testada
+        when (customerRepository.findById(1)).thenReturn(Optional.of(customer));
         ResponseEntity<Customer> foundCustomer = customerService.findCustomerById(1);
-        //recebendo um objeto especial 
         assertThat(foundCustomer).isNotNull();
-        //verifica se o metodo foi chamado
         verify(customerRepository).findById(1);
-    }
 
-    @Test
-    void SaveCustomer() {
-        Customer customer = new Customer();
-        when(customerRepository.save(any(Customer.class))).thenReturn(customer);
-        Customer savedCustomer = customerService.saveCustomer(new Customer());
-        verify(customerRepository).save(any(Customer.class));
-        assertThat(savedCustomer).isNotNull();
-    }
 
-    @Test
-    void UpdateCustomer() {
-
-    }
-
-    //        verify(customerRepository).findById(null);
+//        verify(customerRepository).findById(null);
 //        assertEquals(customerService, customerService);
+
+
+
 
 //        List<Customer> optCustomer = new ArrayList<>();
 //        Integer customerId = 1;
 //        optCustomer.get(customerId);
 //        assertEquals( null, customerId);
+
+
+
+
 
 //                (
 //
@@ -71,8 +61,12 @@ class CustomerServiceImplTest {
 //        when(customerService.findCustomerById(1)).thenReturn();
 //        assertEquals( false, optCustomer);
 
+
+
 //        Optional<Optional<Customer>> customersGet = Optional.of(customerService.findById());
 //        boolean customerTesGet = customersGet.equals(true);
+
+    }
 
 //    @Test
 //    @DisplayName("Deve verificar se está nulo")
@@ -100,5 +94,8 @@ class CustomerServiceImplTest {
 //    @Test
 //    void updateCustomer() {
 //    }
+
+
+
 
 }

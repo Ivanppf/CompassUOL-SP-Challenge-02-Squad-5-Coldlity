@@ -20,7 +20,7 @@ public class CustomerServiceImpl implements CustomerService {
         this.customerRepository = customerRepository;
     }
 
-    // Return 1 customer (search id)
+    @Override
     public ResponseEntity<Customer> findCustomerById(int customerId) {
         Optional<Customer> customerOptional = customerRepository.findById(customerId);
 
@@ -32,7 +32,7 @@ public class CustomerServiceImpl implements CustomerService {
         }
     }
 
-    // Save 1 customer
+    @Override
     public Customer saveCustomer(Customer customer){
         String name = customer.getName();
         String cpf = customer.getCpf();
@@ -54,7 +54,7 @@ public class CustomerServiceImpl implements CustomerService {
         return customerRepository.save(new Customer(name, cpf, email, active));
     }
 
-    // Update 1 customer (search id)
+    @Override
     public Customer updateCustomer(int customerId, Customer customerProps){
         Optional<Customer> customerOptional = customerRepository.findById(customerId);
 
