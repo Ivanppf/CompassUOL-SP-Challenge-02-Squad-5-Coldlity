@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@DisplayName("Teste - Exceptions Product")
 class ProductExceptionsTest {
     // testando se nossa exception do nome está funcionando corretamente colocando a mensagem certa
     // o status certo e se está sendo gerada da classe certa
