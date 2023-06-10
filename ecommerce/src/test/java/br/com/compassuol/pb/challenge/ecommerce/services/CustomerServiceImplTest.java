@@ -2,6 +2,8 @@ package br.com.compassuol.pb.challenge.ecommerce.services;
 
 import br.com.compassuol.pb.challenge.ecommerce.entities.Customer;
 import br.com.compassuol.pb.challenge.ecommerce.repositories.CustomerRepository;
+
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -25,6 +27,7 @@ class CustomerServiceImplTest {
     @InjectMocks
     private CustomerService customerService = new CustomerServiceImpl(customerRepository);
 
+    @DisplayName("Teste GET customer by id")
     @Test
     void findCustomerById() {
 
@@ -40,6 +43,7 @@ class CustomerServiceImplTest {
         verify(customerRepository).findById(1);
     }
 
+    @DisplayName("Teste POST customer")
     @Test
     void SaveCustomer() {
         Customer customer = new Customer();
@@ -49,6 +53,7 @@ class CustomerServiceImplTest {
         assertThat(savedCustomer).isNotNull();
     }
 
+    @DisplayName("Teste PUT customer")
     @Test
     void UpdateCustomer() {
 
