@@ -53,7 +53,7 @@ public class CustomerServiceImpl implements CustomerService {
             String cpf = customerProps.getCpf();
             String email = customerProps.getEmail();
 
-           /*  String nameSanitized = name.trim();
+             String nameSanitized = name.trim();
             String cpfSanitized = cpf.trim();
             String emailSanitized = email.trim();
 
@@ -63,7 +63,7 @@ public class CustomerServiceImpl implements CustomerService {
                 throw new CustomerExceptions.CustomerCpfException("O ATRIBUTO CPF ESTÁ COM ALGUM PROBLEMA - ELE NÃO PODE SER NULO OU VAZIO");
             } else if (emailSanitized == null || emailSanitized == "") {
                 throw new CustomerExceptions.CustomerEmailException("O ATRIBUTO EMAIL ESTÁ COM ALGUM PROBLEMA - ELE NÃO PODE SER NULO OU VAZIO");
-            }*/
+            }
 
             customers.setName(customerProps.getName());
             customers.setCpf(customerProps.getCpf());

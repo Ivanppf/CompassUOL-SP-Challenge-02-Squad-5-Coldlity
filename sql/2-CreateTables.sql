@@ -8,7 +8,6 @@ CREATE TABLE Customers (
 	active 			BOOLEAN			NOT NULL,
 
 	CONSTRAINT chk_name_length CHECK (LENGTH(name) >= 3),
-  	CONSTRAINT chk_cpf_length CHECK (LENGTH(cpf) = 14)
 );
 
 
