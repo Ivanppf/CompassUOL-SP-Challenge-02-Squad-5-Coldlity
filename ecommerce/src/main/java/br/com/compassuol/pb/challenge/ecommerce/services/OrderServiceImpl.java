@@ -1,5 +1,7 @@
 package br.com.compassuol.pb.challenge.ecommerce.services;
 
+
+
 import br.com.compassuol.pb.challenge.ecommerce.entities.Customer;
 import br.com.compassuol.pb.challenge.ecommerce.entities.Order;
 import br.com.compassuol.pb.challenge.ecommerce.exceptions.CustomerExceptions;
@@ -13,25 +15,20 @@ import java.util.Optional;
 
 @Service
 public class OrderServiceImpl implements OrderService {
-    // Repositories
     private CustomerRepository customerRepository;
     private OrderRepository orderRepository;
 
-    // constructor - inject dependency's
     @Autowired
     public OrderServiceImpl(CustomerRepository customerRepository, OrderRepository orderRepository) {
         this.customerRepository = customerRepository;
         this.orderRepository = orderRepository;
     }
 
-    // return all Orders
     @Override
     public List<Order> findAllOrders() {
-
         return orderRepository.findAll();
     }
 
-    // returning orders from a specific customer
     @Override
     public List<Order> findOrdersByCustomerId(int customerId) {
         Optional<Customer> customerOptional = customerRepository.findById(customerId);
@@ -44,10 +41,9 @@ public class OrderServiceImpl implements OrderService {
         }
     }
 
-    // save 1 order
     @Override
     public Order saveOrder(Order orderProps) {
-        int customerId = orderProps.getCustomer();
+        int customerId = orderProps.getCustomer().getCustomerId();
         Optional<Customer> customerOptional = customerRepository.findById(customerId);
         if (customerOptional.isPresent()) {
             return orderRepository.save(orderProps);

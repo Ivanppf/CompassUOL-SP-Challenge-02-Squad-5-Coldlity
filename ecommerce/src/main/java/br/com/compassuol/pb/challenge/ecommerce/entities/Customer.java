@@ -1,5 +1,7 @@
 package br.com.compassuol.pb.challenge.ecommerce.entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -7,6 +9,7 @@ import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "Customers")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "customerId")
 public class Customer {
     @Id
     @Column(name = "customer_id")
