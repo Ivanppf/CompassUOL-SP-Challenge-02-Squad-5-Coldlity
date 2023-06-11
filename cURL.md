@@ -4,35 +4,26 @@ Post
 
     curl --location 'http://localhost:8080/v1/customers' \
     --header 'Content-Type: application/json' \
-    --header 'Authorization: Basic bWFyeToxMjM=' \
     --data-raw '{
-    "name" : "Margarida",
-    "cpf" : "479.151.654-83",
-    "email" : "margarida@gmail.com",
+    "name" : "Francisco",
+    "cpf" : "47912217125",
+    "email" : "Francisco@gmail.com",
     "active" : true
     }'
 
 Get/Id
 
-    curl --location --request GET 'http://localhost:8080/v1/customers/4' \
-    --header 'Content-Type: application/json' \
-    --header 'Authorization: Basic bWFyeToxMjM=' \
-    --data-raw '{
-    "name" : "Margarida",
-    "cpf" : "479.151.654-83",
-    "email" : "margarida@gmail.com",
-    "active" : true
-    }'
+   curl --location 'http://localhost:8080/v1/customers/1' \
+    --data ''
 
 Put/Id
 
-    curl --location --request PUT 'http://localhost:8080/v1/customers/4' \
+    curl --location --request PUT 'http://localhost:8080/v1/customers/1' \
     --header 'Content-Type: application/json' \
-    --header 'Authorization: Basic bWFyeToxMjM=' \
     --data-raw '{
-    "name" : "Margarida Ferreira",
-    "cpf" : "479.151.654-83",
-    "email" : "margarida@gmail.com",
+    "name" : "Robson Freitas",
+    "cpf" : "47925117483",
+    "email" : "rbsonfr@gmail.com",
     "active" : true
     }'
 

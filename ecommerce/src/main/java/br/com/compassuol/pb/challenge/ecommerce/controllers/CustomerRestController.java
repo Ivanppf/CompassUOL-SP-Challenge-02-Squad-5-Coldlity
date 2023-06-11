@@ -20,8 +20,8 @@ public class CustomerRestController {
 
     // return 1 product (search id)
     @GetMapping("/customers/{customerId}")
-    public ResponseEntity<Customer> getCustomer(@PathVariable int customerId){
-        return customerServiceImpl.findCustomerById(customerId);
+    public ResponseEntity<Customer> getCustomerById(@PathVariable int customerId){
+        return customerServiceImpl.getCustomerById(customerId);
     }
 
     // create 1 customer

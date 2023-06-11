@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\" : \"Robson\",\r\n    \"cpf\" : \"479.251.674-83\",\r\n    \"email\" : \"rbson@gmail.com\",\r\n    \"active\" : true\r\n    }",
+					"raw": "{\r\n    \"name\" : \"Robson\",\r\n    \"cpf\" : \"47925117483\",\r\n    \"email\" : \"rbson@gmail.com\",\r\n    \"active\" : true\r\n    }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -37,11 +37,23 @@
 		},
 		{
 			"name": "Get id request",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "http://localhost:8080/v1/customers/4",
+					"raw": "http://localhost:8080/v1/customers/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -50,7 +62,7 @@
 					"path": [
 						"v1",
 						"customers",
-						"4"
+						"1"
 					]
 				}
 			},
@@ -63,7 +75,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\" : \"Margaret Thompson\",\r\n    \"cpf\" : \"479.151.654-83\",\r\n    \"email\" : \"margaret@gmail.com\",\r\n    \"active\" : true\r\n    }",
+					"raw": "{\r\n    \"name\" : \"Robson Freitas\",\r\n    \"cpf\" : \"47925117483\",\r\n    \"email\" : \"rbsonfr@gmail.com\",\r\n    \"active\" : true\r\n    }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -71,7 +83,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/v1/customers/4",
+					"raw": "http://localhost:8080/v1/customers/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -80,7 +92,7 @@
 					"path": [
 						"v1",
 						"customers",
-						"4"
+						"1"
 					]
 				}
 			},
