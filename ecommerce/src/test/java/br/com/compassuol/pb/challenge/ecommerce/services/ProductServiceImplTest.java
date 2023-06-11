@@ -40,7 +40,7 @@ class ProductServiceImplTest {
 
     @Test
     @DisplayName("Teste - Buscando todos os produtos")
-    void testFindAllProducts() {
+    void testFindAllProductsService() {
         // Lista de produtos simulando aqueles que estão cadastrados no banco
         List<Product> products = Arrays.asList(
                 new Product("Produto TESTE 1", 100.99f, "Produto TESTE 1"),
@@ -77,7 +77,7 @@ class ProductServiceImplTest {
 
     @Test
     @DisplayName("Teste - Product com name inválido")
-    void testProductInvalidNameExceptionThrow() {
+    void testProductInvalidNameExceptionThrowService() {
         // Product com o nome inválido
         Product productToBeSaved = new Product("Pr", 100.99f, "Produto TESTE 1");
 
@@ -89,7 +89,7 @@ class ProductServiceImplTest {
 
     @Test
     @DisplayName("Teste - Product com description inválida")
-    void testProductInvalidDescriptionExceptionThrow() {
+    void testProductInvalidDescriptionExceptionThrowService() {
         // Product com a description inválida
         Product productToBeSaved = new Product("Produto TESTE 1", 100.99f, "Pr");
 
@@ -101,7 +101,7 @@ class ProductServiceImplTest {
 
     @Test
     @DisplayName("Teste - Product com price inválido")
-    void testProductInvalidPriceExceptionThrow() {
+    void testProductInvalidPriceExceptionThrowService() {
         // Product com o price inválido
         Product productToBeSaved = new Product("Produto TESTE 1", -1f, "Produto TESTE 1");
 
@@ -113,7 +113,7 @@ class ProductServiceImplTest {
 
     @Test
     @DisplayName("Teste - Deletando um Product")
-    void testDeleteProductByIdOk() {
+    void testDeleteProductByIdOkService() {
         int productId = 1;
 
         // Definindo o comportamento do nosso método findById do repository
@@ -130,8 +130,8 @@ class ProductServiceImplTest {
     }
 
     @Test
-    @DisplayName("Teste - Tentando deletar um produto que não existe")
-    void testDeleteProductByIdNotFound() {
+    @DisplayName("Teste - Tentando deletar um Product que não existe")
+    void testDeleteProductByIdNotFoundService() {
         int productId = 1;
 
         // Definindo o comportamento do nosso método findById do repository
@@ -146,8 +146,8 @@ class ProductServiceImplTest {
     }
 
     @Test
-    @DisplayName("Teste - Atualizando um produto")
-    void testUpdateProductByIdOk() {
+    @DisplayName("Teste - Atualizando um Product")
+    void testUpdateProductByIdOkService() {
         int productId = 1;
         Product product = new Product("Produto TESTE 1", 100.99f, "Produto TESTE 1");
 
@@ -177,7 +177,7 @@ class ProductServiceImplTest {
 
     @Test
     @DisplayName("Teste - Tentando mudar os atributos de um produto que não existe")
-    void testUpdateProductByIdNotFound() {
+    void testUpdateProductByIdNotFoundService() {
         int productId = 1;
 
         // Definindo o comportamento do nosso método findById do repository
