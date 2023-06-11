@@ -14,7 +14,10 @@ import org.springframework.http.ResponseEntity;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -36,7 +39,7 @@ class CustomerServiceImplTest {
         // quando o repository receber uma chamada pra um findId de 1, retorna o objeto
         when(customerRepository.findById(1)).thenReturn(Optional.of(customer));
         //chama o metodo na classe que esta sendo testada
-        ResponseEntity<Customer> foundCustomer = customerService.findCustomerById(1);
+        ResponseEntity<Customer> foundCustomer = customerService.getCustomerById(1);
         //recebendo um objeto especial 
         assertThat(foundCustomer).isNotNull();
         //verifica se o metodo foi chamado
@@ -56,7 +59,13 @@ class CustomerServiceImplTest {
     @DisplayName("Teste PUT customer")
     @Test
     void UpdateCustomer() {
-
+        /*Customer customer = new Customer();
+        
+        customer.setCustomerId(1);
+        when(customerRepository.findById(1)).thenReturn(Optional.of(customer));
+        Customer updateCustomer = customerService.updateCustomer(1,new Customer());
+        verify(customerRepository).save(any(Customer.class));
+        assertThat(updateCustomer).isNotNull();*/
     }
 
     //        verify(customerRepository).findById(null);

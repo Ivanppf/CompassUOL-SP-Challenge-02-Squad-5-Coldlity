@@ -21,7 +21,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public ResponseEntity<Customer> findCustomerById(int customerId) {
+    public ResponseEntity<Customer> getCustomerById(int customerId) {
         Optional<Customer> customerOptional = customerRepository.findById(customerId);
 
         if (customerOptional.isPresent()) {
@@ -39,18 +39,6 @@ public class CustomerServiceImpl implements CustomerService {
         String email = customer.getEmail();
         boolean active = customer.isActive();
 
-        String nameSanitized = name.trim();
-        String cpfSanitized = cpf.trim();
-        String emailSanitized = email.trim();
-
-        if (nameSanitized == null || nameSanitized == "" || nameSanitized.length() < 3) {
-            throw new CustomerExceptions.CustomerNameException("O ATRIBUTO NAME ESTÁ COM ALGUM PROBLEMA - ELE NÃO PODE SER NULO OU VAZIO E DEVE TER NO MINIMO 3 CARACTERES");
-        } else if (cpfSanitized == null || cpfSanitized == "") {
-            throw new CustomerExceptions.CustomerCpfException("O ATRIBUTO CPF ESTÁ COM ALGUM PROBLEMA - ELE NÃO PODE SER NULO OU VAZIO");
-        } else if (emailSanitized == null || emailSanitized == "") {
-            throw new CustomerExceptions.CustomerEmailException("O ATRIBUTO EMAIL ESTÁ COM ALGUM PROBLEMA - ELE NÃO PODE SER NULO OU VAZIO");
-        }
-
         return customerRepository.save(new Customer(name, cpf, email, active));
     }
 
@@ -65,7 +53,7 @@ public class CustomerServiceImpl implements CustomerService {
             String cpf = customerProps.getCpf();
             String email = customerProps.getEmail();
 
-            String nameSanitized = name.trim();
+           /*  String nameSanitized = name.trim();
             String cpfSanitized = cpf.trim();
             String emailSanitized = email.trim();
 
@@ -75,7 +63,7 @@ public class CustomerServiceImpl implements CustomerService {
                 throw new CustomerExceptions.CustomerCpfException("O ATRIBUTO CPF ESTÁ COM ALGUM PROBLEMA - ELE NÃO PODE SER NULO OU VAZIO");
             } else if (emailSanitized == null || emailSanitized == "") {
                 throw new CustomerExceptions.CustomerEmailException("O ATRIBUTO EMAIL ESTÁ COM ALGUM PROBLEMA - ELE NÃO PODE SER NULO OU VAZIO");
-            }
+            }*/
 
             customers.setName(customerProps.getName());
             customers.setCpf(customerProps.getCpf());
