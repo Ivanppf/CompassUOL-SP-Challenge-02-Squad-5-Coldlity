@@ -13,18 +13,15 @@ import java.util.Optional;
 
 @Service
 public class PaymentServiceImpl implements PaymentService{
-    // Repositories
     private PaymentRepository paymentRepository;
     private OrderRepository orderRepository;
 
-    // constructor - inject dependency's
     @Autowired
     public PaymentServiceImpl(PaymentRepository paymentRepository, OrderRepository orderRepository) {
         this.paymentRepository = paymentRepository;
         this.orderRepository = orderRepository;
     }
 
-    // post 1 payment - confirm payment
     @Override
     public Payment confirmPayment(Payment paymentProps) {
         Optional<Order> orderOptional = orderRepository.findById(paymentProps.getOrderId());

@@ -11,10 +11,8 @@ import java.util.Optional;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
-    // Repository
     private CustomerRepository customerRepository;
 
-    // Constructor - inject dependency
     @Autowired
     public CustomerServiceImpl(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;

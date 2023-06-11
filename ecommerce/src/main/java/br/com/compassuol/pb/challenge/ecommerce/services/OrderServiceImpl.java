@@ -43,7 +43,6 @@ public class OrderServiceImpl implements OrderService {
         }
     }
 
-    // save 1 order
     @Override
     public Order saveOrder(Order orderProps) {
         Optional<Customer> customerOptional = customerRepository.findById(orderProps.getCustomerId());
