@@ -19,12 +19,12 @@ public class Payment {
     private Integer paymentId;
 
     @Column(name = "orderId", nullable = false)
-    @NotNull(message = "'orderId' não pode ser nulo ou vazio")
+    @NotNull(message = "'orderId' can't be null or empty")
     @JsonIdentityReference(alwaysAsId = true)
     private Integer orderId;
 
     @Column(nullable = false)
-    @NotNull(message = "'paymentMethod' não pode ser nulo ou vazio")
+    @NotNull(message = "'paymentMethod' can't be null or empty")
     @Enumerated(EnumType.STRING)
     private PaymentMethods paymentMethod;
 

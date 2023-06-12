@@ -18,8 +18,8 @@ public class Order {
     @Column(name = "order_id")
     private Integer orderId;
 
-    @NotNull(message = "'customerId' não pode ser nulo")
-    @Positive(message = "'customerId' deve ser um número positivo")
+    @NotNull(message = "'customerId' can't be null")
+    @Positive(message = "'customerId' must be a positive number")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id")
     @JsonIdentityReference(alwaysAsId = true)

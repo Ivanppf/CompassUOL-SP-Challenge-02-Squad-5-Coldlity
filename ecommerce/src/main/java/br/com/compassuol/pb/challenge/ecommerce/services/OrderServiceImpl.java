@@ -37,7 +37,7 @@ public class OrderServiceImpl implements OrderService {
 
             return orderRepository.findAllByCustomer_CustomerId(customerId);
         } else {
-            throw new CustomerExceptions.CustomerNotFoundException("CUSTOMER ID (" + customerId + ") NÃO ENCONTRADO");
+            throw new CustomerExceptions.CustomerNotFoundException("CUSTOMER ID (" + customerId + ") NOT FOUND");
         }
     }
 
@@ -48,7 +48,7 @@ public class OrderServiceImpl implements OrderService {
         if (customerOptional.isPresent()) {
             return orderRepository.save(orderProps);
         } else {
-            throw new CustomerExceptions.CustomerNotFoundException("CUSTOMER ID (" + customerId + ") NÃO ENCONTRADO");
+            throw new CustomerExceptions.CustomerNotFoundException("CUSTOMER ID (" + customerId + ") NOT FOUND");
         }
     }
 }
