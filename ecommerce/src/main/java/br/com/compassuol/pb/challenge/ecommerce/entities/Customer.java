@@ -1,14 +1,19 @@
 package br.com.compassuol.pb.challenge.ecommerce.entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "Customers")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "customerId")
 public class Customer {
     @Id
-    @Column(name = "customerId")
+    @Column(name = "customer_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer customerId;
 
@@ -16,18 +21,18 @@ public class Customer {
     @Column(name = "name")
     private String name;
 
-    @NotEmpty(message = "não pode ser nulo ou vazio")
+    @NotBlank(message = "can't be null or empty")
     @Column(name = "cpf", unique = true)
     private String cpf;
 
-    @NotEmpty(message = "não pode ser nulo ou vazio")
+    @NotEmpty(message = "can't be null or empty")
     @Column(name = "email", unique = true)
     private String email;
 
     @Column(name = "active")
     private boolean active;
 
-    public Customer(){
+    public Customer() {
 
     }
 
@@ -42,8 +47,8 @@ public class Customer {
         return customerId;
     }
 
-    public void setCustomerId(Integer id) {
-        this.customerId = id;
+    public void setCustomerId(Integer customerId) {
+        this.customerId = customerId;
     }
 
     public String getName() {
@@ -88,5 +93,4 @@ public class Customer {
                 ", active=" + active +
                 '}';
     }
-
 }

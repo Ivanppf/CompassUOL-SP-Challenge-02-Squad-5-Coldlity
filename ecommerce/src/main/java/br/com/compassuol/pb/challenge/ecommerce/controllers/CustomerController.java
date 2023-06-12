@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/v1")
-public class CustomerRestController {
+public class CustomerController {
     // service
     private CustomerServiceImpl customerServiceImpl;
 
     // constructor - inject service dependency
     @Autowired
-    public CustomerRestController(CustomerServiceImpl customerServiceImpl) {
+    public CustomerController(CustomerServiceImpl customerServiceImpl) {
         this.customerServiceImpl = customerServiceImpl;
     }
 
