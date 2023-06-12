@@ -1,6 +1,9 @@
 package br.com.compassuol.pb.challenge.ecommerce.controllers;
 
+import br.com.compassuol.pb.challenge.ecommerce.dto.OrderDTO;
+import br.com.compassuol.pb.challenge.ecommerce.entities.Customer;
 import br.com.compassuol.pb.challenge.ecommerce.entities.Order;
+import br.com.compassuol.pb.challenge.ecommerce.services.CustomerServiceImpl;
 import br.com.compassuol.pb.challenge.ecommerce.services.OrderServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -28,8 +31,7 @@ public class OrderRestController {
     }
 
     @PostMapping("/orders")
-    public Order addOrder(@RequestBody Order orderProps) {
-        Order anOrder = orderService.saveOrder(orderProps);
-        return anOrder;
+    public Order saveOrder(@RequestBody OrderDTO orderProps) {
+        return orderService.saveOrder(orderProps);
     }
 }

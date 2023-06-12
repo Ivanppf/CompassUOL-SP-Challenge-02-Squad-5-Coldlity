@@ -19,7 +19,6 @@ public class Order {
     private Integer orderId;
 
     @NotNull(message = "'customerId' can't be null")
-    @Positive(message = "'customerId' must be a positive number")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id")
     @JsonIdentityReference(alwaysAsId = true)
@@ -42,7 +41,6 @@ public class Order {
         this.status = status;
     }
 
-
     public int getOrderId() {
         return orderId;
     }
@@ -50,6 +48,10 @@ public class Order {
     @JsonProperty(value = "customerId")
     public Customer getCustomer() {
         return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public LocalDate getDate() {
@@ -62,6 +64,14 @@ public class Order {
 
     public void setStatus(StatusOptions status) {
         this.status = status;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
     }
 
     @Override

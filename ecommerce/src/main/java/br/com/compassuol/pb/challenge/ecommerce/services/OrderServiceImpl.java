@@ -2,6 +2,7 @@ package br.com.compassuol.pb.challenge.ecommerce.services;
 
 
 
+import br.com.compassuol.pb.challenge.ecommerce.dto.OrderDTO;
 import br.com.compassuol.pb.challenge.ecommerce.entities.Customer;
 import br.com.compassuol.pb.challenge.ecommerce.entities.Order;
 import br.com.compassuol.pb.challenge.ecommerce.exceptions.CustomerExceptions;
@@ -42,13 +43,24 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order saveOrder(Order orderProps) {
+    public Order saveOrder(OrderDTO orderProps) {
+        Order order = getOrder(orderProps);
         int customerId = orderProps.getCustomer().getCustomerId();
         Optional<Customer> customerOptional = customerRepository.findById(customerId);
         if (customerOptional.isPresent()) {
-            return orderRepository.save(orderProps);
+            return orderRepository.save(order);
         } else {
             throw new CustomerExceptions.CustomerNotFoundException("CUSTOMER ID (" + customerId + ") NOT FOUND");
         }
+    }
+
+    private static Order getOrder(OrderDTO orderProps) {
+        Order order = new Order();
+        Customer customer = new Customer();
+        customer.setCustomerId(orderProps.getCustomer().getCustomerId());
+        order.setCustomer(customer);
+        order.setDate(orderProps.getDate());
+        order.setStatus(orderProps.getStatus());
+        return order;
     }
 }

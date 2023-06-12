@@ -20,18 +20,18 @@ public class Customer {
     @Column(name = "name")
     private String name;
 
-    @NotBlank(message = "não pode ser nulo ou vazio")
+    @NotBlank(message = "can't be null or empty")
     @Column(name = "cpf", unique = true)
     private String cpf;
 
-    @NotEmpty(message = "não pode ser nulo ou vazio")
+    @NotEmpty(message = "can't be null or empty")
     @Column(name = "email", unique = true)
     private String email;
 
     @Column(name = "active")
     private boolean active;
 
-    public Customer(){
+    public Customer() {
 
     }
 
@@ -44,6 +44,10 @@ public class Customer {
 
     public Integer getCustomerId() {
         return customerId;
+    }
+
+    public void setCustomerId(Integer customerId) {
+        this.customerId = customerId;
     }
 
     public String getName() {
