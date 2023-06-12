@@ -40,6 +40,10 @@ public class Payment {
         return paymentId;
     }
 
+    public void setPaymentId(Integer paymentId) {
+        this.paymentId = paymentId;
+    }
+
     public @NotNull PaymentMethods getPaymentMethod() {
         return paymentMethod;
     }
