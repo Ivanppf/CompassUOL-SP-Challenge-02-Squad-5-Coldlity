@@ -45,8 +45,16 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order saveOrder(OrderDTO orderProps) {
         Order order = getOrder(orderProps);
+<<<<<<< HEAD
         int customerId = orderProps.getCustomer().getCustomerId();
         Optional<Customer> customerOptional = customerRepository.findById(customerId);
+=======
+
+        int customerId = orderProps.getCustomer().getCustomerId();
+
+        Optional<Customer> customerOptional = customerRepository.findById(customerId);
+
+>>>>>>> 5a6985e53dbddbfa1525ecf6d16186cf85ba5139
         if (customerOptional.isPresent()) {
             return orderRepository.save(order);
         } else {

@@ -20,7 +20,11 @@ public class Order {
 
     @NotNull(message = "'customerId' can't be null")
     @ManyToOne(fetch = FetchType.LAZY)
+<<<<<<< HEAD
     @JoinColumn(name = "customer_id")
+=======
+    @JoinColumn(name = "customer_id", foreignKey = @ForeignKey(name = "fk_order_customer"))
+>>>>>>> 5a6985e53dbddbfa1525ecf6d16186cf85ba5139
     @JsonIdentityReference(alwaysAsId = true)
     private Customer customer;
 
