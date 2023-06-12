@@ -1,13 +1,8 @@
 package br.com.compassuol.pb.challenge.ecommerce.controllers;
 
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import static org.mockito.Mockito.when;
-
-
-
+import br.com.compassuol.pb.challenge.ecommerce.entities.Customer;
+import br.com.compassuol.pb.challenge.ecommerce.services.CustomerServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,8 +11,9 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.ResponseEntity;
 
-import br.com.compassuol.pb.challenge.ecommerce.entities.Customer;
-import br.com.compassuol.pb.challenge.ecommerce.services.CustomerServiceImpl;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class CustomerControllerTest {

@@ -66,9 +66,9 @@ class PaymentTest {
         String paymentString = payment.toString();
         assertEquals("Payment{" +
                 "paymentId=" + null +
+                ", order=" + null +
                 ", paymentMethod=" + null +
                 ", paymentDate=" + null +
                 '}', paymentString);
     }
-
 }

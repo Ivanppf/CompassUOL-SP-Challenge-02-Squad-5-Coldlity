@@ -4,5 +4,5 @@ import br.com.compassuol.pb.challenge.ecommerce.dto.PaymentDTO;
 import br.com.compassuol.pb.challenge.ecommerce.entities.Payment;
 
 public interface PaymentService {
-    public Payment confirmPayment(Payment payment);
+    public Payment confirmPayment(PaymentDTO payment);
 }

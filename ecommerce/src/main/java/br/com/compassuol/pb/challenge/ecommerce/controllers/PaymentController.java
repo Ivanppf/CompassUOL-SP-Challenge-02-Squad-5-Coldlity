@@ -18,7 +18,7 @@ public class PaymentController {
     }
 
     @PostMapping("/payments")
-    public Payment postPayment(@RequestBody Payment paymentProps) {
+    public Payment postPayment(@RequestBody PaymentDTO paymentProps) {
         return paymentService.confirmPayment(paymentProps);
     }
 }

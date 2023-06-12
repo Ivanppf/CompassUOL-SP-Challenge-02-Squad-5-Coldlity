@@ -23,9 +23,8 @@ public class PaymentServiceImpl implements PaymentService {
         this.orderRepository = orderRepository;
     }
 
-    // post 1 payment - confirm payment
     @Override
-    public Payment confirmPayment(Payment paymentProps) {
+    public Payment confirmPayment(PaymentDTO paymentProps) {
         Payment payment = getPayment(paymentProps);
 
         Optional<Order> orderOptional = orderRepository.findById(paymentProps.getOrder().getOrderId());

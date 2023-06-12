@@ -31,7 +31,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer saveCustomer(Customer customer){
+    public Customer saveCustomer(Customer customer) {
         String name = customer.getName();
         String cpf = customer.getCpf();
         String email = customer.getEmail();
@@ -41,17 +41,17 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer updateCustomer(int customerId, Customer customerProps){
+    public Customer updateCustomer(int customerId, Customer customerProps) {
         Optional<Customer> customerOptional = customerRepository.findById(customerId);
 
-        if(customerOptional.isPresent()){
+        if (customerOptional.isPresent()) {
             Customer customers = customerOptional.get();
 
             String name = customerProps.getName();
             String cpf = customerProps.getCpf();
             String email = customerProps.getEmail();
 
-             String nameSanitized = name.trim();
+            String nameSanitized = name.trim();
             String cpfSanitized = cpf.trim();
             String emailSanitized = email.trim();
 
@@ -69,7 +69,7 @@ public class CustomerServiceImpl implements CustomerService {
             customers.setActive(customerProps.isActive());
 
             return customerRepository.save(customers);
-        } else{
+        } else {
             throw new CustomerExceptions.CustomerNotFoundException("CUSTOMER ID (" + customerId + ") NÃO ENCONTRADO");
         }
     }

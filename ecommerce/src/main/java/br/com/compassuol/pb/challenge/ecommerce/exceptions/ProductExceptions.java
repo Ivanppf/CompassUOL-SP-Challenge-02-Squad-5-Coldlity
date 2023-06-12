@@ -20,14 +20,14 @@ public class ProductExceptions {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public static class ProductPriceException extends RuntimeException {
-        public ProductPriceException (String message) {
+        public ProductPriceException(String message) {
             super(message);
         }
     }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public static class ProductNotFoundException extends RuntimeException {
-        public ProductNotFoundException (String message) {
+        public ProductNotFoundException(String message) {
             super(message);
         }
     }

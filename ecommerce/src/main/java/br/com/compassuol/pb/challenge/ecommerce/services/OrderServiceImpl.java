@@ -1,7 +1,5 @@
 package br.com.compassuol.pb.challenge.ecommerce.services;
 
-
-
 import br.com.compassuol.pb.challenge.ecommerce.dto.OrderDTO;
 import br.com.compassuol.pb.challenge.ecommerce.entities.Customer;
 import br.com.compassuol.pb.challenge.ecommerce.entities.Order;
