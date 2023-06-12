@@ -1,7 +1,8 @@
 package br.com.compassuol.pb.challenge.ecommerce.controllers;
 
+import br.com.compassuol.pb.challenge.ecommerce.dto.PaymentDTO;
 import br.com.compassuol.pb.challenge.ecommerce.entities.Payment;
-import br.com.compassuol.pb.challenge.ecommerce.services.PaymentService;
+import br.com.compassuol.pb.challenge.ecommerce.services.PaymentServiceImpl;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,16 +10,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/v1")
-public class PaymentController {
-    private PaymentService paymentService;
+public class PaymentRestController {
+    private PaymentServiceImpl paymentService;
 
-    public PaymentController(PaymentService paymentService) {
+    public PaymentRestController(PaymentServiceImpl paymentService) {
         this.paymentService = paymentService;
     }
 
-    // post 1 payment
     @PostMapping("/payments")
-    public Payment postPayment(@RequestBody Payment paymentProps) {
+    public Payment postPayment(@RequestBody PaymentDTO paymentProps) {
         return paymentService.confirmPayment(paymentProps);
     }
 }
