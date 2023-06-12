@@ -7,12 +7,15 @@ import br.com.compassuol.pb.challenge.ecommerce.entities.Payment;
 import br.com.compassuol.pb.challenge.ecommerce.enums.StatusOptions;
 import br.com.compassuol.pb.challenge.ecommerce.repositories.OrderRepository;
 import br.com.compassuol.pb.challenge.ecommerce.repositories.PaymentRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -29,8 +32,13 @@ class PaymentServiceImplTest {
     @Mock
     private OrderRepository orderRepository;
 
-    public PaymentServiceImplTest(PaymentRepository paymentRepository, OrderRepository orderRepository) {
-        this.paymentRepository = paymentRepository;
-        this.orderRepository = orderRepository;
+    private PaymentServiceImpl paymentService;
+
+    @BeforeEach
+    void setup() {
+        MockitoAnnotations.openMocks(this);
+        paymentService = new PaymentServiceImpl(paymentRepository, orderRepository);
     }
+
+    // Completar
 }
