@@ -74,10 +74,6 @@ public class Payment {
         this.paymentDate = paymentDate;
     }
 
-    public int getOrderId() {
-        return orderId;
-    }
-
     @Override
     public String toString() {
         return "Payment{" +
