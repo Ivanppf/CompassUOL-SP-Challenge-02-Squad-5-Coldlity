@@ -20,7 +20,7 @@ import br.com.compassuol.pb.challenge.ecommerce.entities.Customer;
 import br.com.compassuol.pb.challenge.ecommerce.services.CustomerServiceImpl;
 
 @ExtendWith(MockitoExtension.class)
-public class CustomerRestControllerTest {
+public class CustomerControllerTest {
 
     @InjectMocks
     private CustomerController customerRestController;
