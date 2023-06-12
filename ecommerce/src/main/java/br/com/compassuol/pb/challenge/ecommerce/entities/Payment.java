@@ -1,6 +1,9 @@
 package br.com.compassuol.pb.challenge.ecommerce.entities;
 
 import br.com.compassuol.pb.challenge.ecommerce.enums.PaymentMethods;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
@@ -8,6 +11,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "Payments")
+@JsonPropertyOrder({"paymentId","orderId","paymentMethod","paymentDate"})
 public class Payment {
     @Id
     @Column(name = "paymentId")
@@ -16,6 +20,7 @@ public class Payment {
 
     @Column(name = "orderId", nullable = false)
     @NotNull(message = "'orderId' não pode ser nulo ou vazio")
+    @JsonIdentityReference(alwaysAsId = true)
     private Integer orderId;
 
     @Column(nullable = false)

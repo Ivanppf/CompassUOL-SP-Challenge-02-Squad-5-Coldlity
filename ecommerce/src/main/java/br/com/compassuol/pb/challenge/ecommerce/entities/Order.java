@@ -1,9 +1,7 @@
 package br.com.compassuol.pb.challenge.ecommerce.entities;
 
 import br.com.compassuol.pb.challenge.ecommerce.enums.StatusOptions;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -13,6 +11,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "Orders")
 @JsonPropertyOrder({"orderId", "customer", "date", "status"})
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "orderId")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
