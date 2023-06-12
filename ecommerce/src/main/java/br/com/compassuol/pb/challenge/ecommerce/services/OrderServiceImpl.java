@@ -1,5 +1,8 @@
 package br.com.compassuol.pb.challenge.ecommerce.services;
 
+
+
+import br.com.compassuol.pb.challenge.ecommerce.dto.OrderDTO;
 import br.com.compassuol.pb.challenge.ecommerce.entities.Customer;
 import br.com.compassuol.pb.challenge.ecommerce.entities.Order;
 import br.com.compassuol.pb.challenge.ecommerce.exceptions.CustomerExceptions;
@@ -13,44 +16,54 @@ import java.util.Optional;
 
 @Service
 public class OrderServiceImpl implements OrderService {
-    // Repositories
     private CustomerRepository customerRepository;
     private OrderRepository orderRepository;
 
-    // constructor - inject dependency's
     @Autowired
     public OrderServiceImpl(CustomerRepository customerRepository, OrderRepository orderRepository) {
         this.customerRepository = customerRepository;
         this.orderRepository = orderRepository;
     }
 
-    // return all Orders
     @Override
     public List<Order> findAllOrders() {
         return orderRepository.findAll();
     }
 
-    // returning orders from a specific customer
-    // NÃO RETORNA TODOS AS ORDERS
     @Override
-    public Optional<Order> findOrdersById(int customerId) {
+    public List<Order> findOrdersByCustomerId(int customerId) {
         Optional<Customer> customerOptional = customerRepository.findById(customerId);
 
         if (customerOptional.isPresent()) {
-            return orderRepository.findById(customerId);
+
+            return orderRepository.findAllByCustomer_CustomerId(customerId);
         } else {
-            throw new CustomerExceptions.CustomerNotFoundException("CUSTOMER ID (" + customerId + ") NÃO ENCONTRADO");
+            throw new CustomerExceptions.CustomerNotFoundException("CUSTOMER ID (" + customerId + ") NOT FOUND");
         }
     }
 
     @Override
-    public Order saveOrder(Order orderProps) {
-        Optional<Customer> customerOptional = customerRepository.findById(orderProps.getCustomerId());
+    public Order saveOrder(OrderDTO orderProps) {
+        Order order = getOrder(orderProps);
+
+        int customerId = orderProps.getCustomer().getCustomerId();
+
+        Optional<Customer> customerOptional = customerRepository.findById(customerId);
 
         if (customerOptional.isPresent()) {
-            return orderRepository.save(orderProps);
+            return orderRepository.save(order);
         } else {
-            throw new CustomerExceptions.CustomerNotFoundException("CUSTOMER ID (" + orderProps.getCustomerId() + ") NÃO ENCONTRADO");
+            throw new CustomerExceptions.CustomerNotFoundException("CUSTOMER ID (" + customerId + ") NOT FOUND");
         }
+    }
+
+    private static Order getOrder(OrderDTO orderProps) {
+        Order order = new Order();
+        Customer customer = new Customer();
+        customer.setCustomerId(orderProps.getCustomer().getCustomerId());
+        order.setCustomer(customer);
+        order.setDate(orderProps.getDate());
+        order.setStatus(orderProps.getStatus());
+        return order;
     }
 }

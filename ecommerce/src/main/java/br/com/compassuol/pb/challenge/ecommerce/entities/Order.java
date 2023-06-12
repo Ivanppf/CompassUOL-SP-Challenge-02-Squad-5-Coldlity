@@ -1,26 +1,29 @@
 package br.com.compassuol.pb.challenge.ecommerce.entities;
 
 import br.com.compassuol.pb.challenge.ecommerce.enums.StatusOptions;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
 
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "Orders")
+@JsonPropertyOrder({"orderId", "customer", "date", "status"})
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "orderId")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "orderId")
+    @Column(name = "order_id")
     private Integer orderId;
 
-    @Column(name = "customerId", nullable = false)
-    @NotNull(message = "'customerId' não pode ser nulo")
-    @Positive(message = "'customerId' deve ser um número positivo")
-    private Integer customerId;
+    @NotNull(message = "'customerId' can't be null")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "customer_id", foreignKey = @ForeignKey(name = "fk_order_customer"))
+    @JsonIdentityReference(alwaysAsId = true)
+    private Customer customer;
 
-    @Column(name = "date", nullable = false)
+    @Column(name = "orderDate", nullable = false)
     private LocalDate date;
 
     @Column(name = "status", nullable = false)
@@ -31,8 +34,8 @@ public class Order {
 
     }
 
-    public Order(int customerId, LocalDate date, StatusOptions status) {
-        this.customerId = customerId;
+    public Order(Customer customer, LocalDate date, StatusOptions status) {
+        this.customer = customer;
         this.date = date;
         this.status = status;
     }
@@ -41,8 +44,13 @@ public class Order {
         return orderId;
     }
 
-    public int getCustomerId() {
-        return customerId;
+    @JsonProperty(value = "customerId")
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public LocalDate getDate() {
@@ -57,11 +65,19 @@ public class Order {
         this.status = status;
     }
 
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
+    }
+
     @Override
     public String toString() {
         return "Order{" +
                 "orderId=" + orderId +
-                ", customerId=" + customerId +
+                ", customerId=" + customer +
                 ", date=" + date +
                 ", status=" + status +
                 '}';

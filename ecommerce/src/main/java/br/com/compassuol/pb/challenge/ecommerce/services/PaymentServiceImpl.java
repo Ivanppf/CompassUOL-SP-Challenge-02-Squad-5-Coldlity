@@ -1,5 +1,6 @@
 package br.com.compassuol.pb.challenge.ecommerce.services;
 
+import br.com.compassuol.pb.challenge.ecommerce.dto.PaymentDTO;
 import br.com.compassuol.pb.challenge.ecommerce.entities.Order;
 import br.com.compassuol.pb.challenge.ecommerce.entities.Payment;
 import br.com.compassuol.pb.challenge.ecommerce.enums.StatusOptions;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class PaymentServiceImpl implements PaymentService{
+public class PaymentServiceImpl implements PaymentService {
     private PaymentRepository paymentRepository;
     private OrderRepository orderRepository;
 
@@ -22,22 +23,37 @@ public class PaymentServiceImpl implements PaymentService{
         this.orderRepository = orderRepository;
     }
 
+    // post 1 payment - confirm payment
     @Override
     public Payment confirmPayment(Payment paymentProps) {
-        Optional<Order> orderOptional = orderRepository.findById(paymentProps.getOrderId());
+        Payment payment = getPayment(paymentProps);
+
+        Optional<Order> orderOptional = orderRepository.findById(paymentProps.getOrder().getOrderId());
 
         if (orderOptional.isPresent()) {
             Order order = orderOptional.get();
 
             if (order.getStatus() == StatusOptions.CONFIRMED) {
-                throw new OrderExceptions.OrderPaymentStatusConfirmedException("ORDER ID (" + order.getOrderId()  + ") JÁ ESTÁ COM O STATUS 'CONFIRMED'");
+                throw new OrderExceptions.OrderPaymentStatusConfirmedException("ORDER ID (" + order.getOrderId() + ") JÁ ESTÁ COM O STATUS 'CONFIRMED'");
             }
 
             order.setStatus(StatusOptions.CONFIRMED);
 
-            return paymentRepository.save(new Payment(paymentProps.getOrderId(), paymentProps.getPaymentMethod(), paymentProps.getPaymentDate()));
+            return paymentRepository.save(payment);
         } else {
-            throw new OrderExceptions.OrderNotFoundException("ORDER ID (" + paymentProps.getOrderId() + ") NÃO ENCONTRADO");
+            throw new OrderExceptions.OrderNotFoundException("ORDER ID (" + paymentProps.getOrder().getOrderId() + ") NÃO ENCONTRADO");
         }
+    }
+
+    private static Payment getPayment(PaymentDTO paymentProps) {
+        Order order = new Order();
+        order.setOrderId(paymentProps.getOrder().getOrderId());
+
+        Payment payment = new Payment();
+        payment.setOrder(order);
+        payment.setPaymentDate(paymentProps.getPaymentDate());
+        payment.setPaymentMethod(paymentProps.getPaymentMethod());
+
+        return payment;
     }
 }

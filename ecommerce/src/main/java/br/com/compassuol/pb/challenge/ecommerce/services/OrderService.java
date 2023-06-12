@@ -1,15 +1,15 @@
 package br.com.compassuol.pb.challenge.ecommerce.services;
 
+import br.com.compassuol.pb.challenge.ecommerce.dto.OrderDTO;
 import br.com.compassuol.pb.challenge.ecommerce.entities.Order;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface OrderService {
 
     public List<Order> findAllOrders();
 
-    public Optional<Order> findOrdersById(int id);
+    public List<Order> findOrdersByCustomerId(int id);
 
-    public Order saveOrder(Order order);
+    public Order saveOrder(OrderDTO order);
 }
