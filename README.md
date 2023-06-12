@@ -1,6 +1,6 @@
 # 🧭 Challenge 02 - PB Compass UOL
 
-O objetivo deste desafio é desenvolver uma espécie de ecommerce, trabalhando em equipe, usando os conhecimentos que obtivemos até a Week VII do Programa de Bolsas (Spring / Spring Boot, Testes unitários, SQL etc)
+The objective of this challenge is to develop a kind of ecommerce, working as a team, using the knowledge we obtained until Week VII of the Scholarship Program (Spring / Spring Boot, Unit Tests, SQL etc)
 
 
 
@@ -16,11 +16,11 @@ O objetivo deste desafio é desenvolver uma espécie de ecommerce, trabalhando e
 
 
 
-## ☕ Stack utilizada
+## ☕ Stack used
 
 **Back-end:** Spring / Spring Boot
 
-**Banco de dados:** JPA / Hibernate e SQL (PostgreSQL)
+**DateBase:** JPA / Hibernate e SQL (PostgreSQL)
 
 **Java**: Versão 17
 
