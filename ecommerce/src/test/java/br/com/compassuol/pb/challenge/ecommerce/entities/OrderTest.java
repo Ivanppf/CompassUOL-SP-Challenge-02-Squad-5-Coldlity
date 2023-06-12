@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.*;
 
 class OrderTest {
-    
+
     @Test
     void setOrderId() {
         Order order =  new Order();
