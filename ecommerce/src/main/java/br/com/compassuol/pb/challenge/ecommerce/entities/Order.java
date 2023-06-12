@@ -45,6 +45,10 @@ public class Order {
         return orderId;
     }
 
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
+    }
+
     @JsonProperty(value = "customerId")
     public Customer getCustomer() {
         return customer;
@@ -58,20 +62,16 @@ public class Order {
         return date;
     }
 
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
     public StatusOptions getStatus() {
         return status;
     }
 
     public void setStatus(StatusOptions status) {
         this.status = status;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    public void setOrderId(Integer orderId) {
-        this.orderId = orderId;
     }
 
     @Override
